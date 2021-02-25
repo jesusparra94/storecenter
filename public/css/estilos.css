@@ -1,0 +1,25 @@
+.infoproducto figure.visor img{
+	display:none;
+}
+
+.infoproducto figure.visor img:first-child{
+	display:block;
+}
+
+.flexslider{
+	cursor: pointer;
+}
+
+.btn-cotizar{
+    color: #234560;
+    border-color: #234560;
+}
+.btn-cotizar:hover{
+    background-color: #234560;
+    color:white;
+}
+
+.lista-productos{
+    box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
+    margin-bottom: 1rem;
+}
