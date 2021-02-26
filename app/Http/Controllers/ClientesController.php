@@ -8,6 +8,7 @@ use App\Models\Productos;
 use App\Models\ProductosCategorias;
 use App\Models\Slider;
 use App\Models\Comunas;
+use App\Models\Regiones;
 use App\Models\Clientes;
 use App\Models\Pedidos;
 
@@ -99,6 +100,39 @@ class ClientesController extends Controller
 
 
         return view('cliente.micuenta',compact('categorias','subcategorias','footer','pedidos'));
+    }
+
+    public function misdatos(){
+
+
+        $categorias = ProductosCategorias::where([['CAT_PADRE', '=' , 0],['CAT_ESTADO', '=' , 1]])
+                                            ->orderBy('CAT_NOMBRE', 'asc')
+                                            ->get();
+
+        foreach ($categorias as $key => $value) {
+
+            $subcategorias[] =ProductosCategorias::where([['CAT_PADRE', '=' , $value["CAT_ID"]],['CAT_ESTADO', '=' , 1]])
+                                                                ->orderBy('CAT_NOMBRE', 'asc')
+                                                                ->get();
+        }
+
+        $footer =  Contenidos:: where([['CON_CODIGO', '=' , 'pie']])
+        ->first();
+
+
+        $idcliente = \Session::get('id');
+
+        $cliente = Clientes::where('vip_id','=',$idcliente)->first();
+
+        $comunas = Comunas::where('com_id','=',$cliente->vip_comuna)->first();
+
+        $regiones = Regiones::where('reg_id','=',$comunas->reg_id)->first();
+
+        $comuna = $comunas->com_nombre;
+
+        $region = $regiones->reg_nombre;
+
+        return view('cliente.datoscliente',compact('categorias','subcategorias','footer','comuna','region','cliente'));
     }
 
     public function login(Request $request){
