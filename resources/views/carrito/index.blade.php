@@ -4,7 +4,12 @@
 @php
 if(Session::has('car')){
     $car = Session::get('car');
-    $totalproductos = count($car);
+    if(count($car)>0){
+        $totalproductos = count($car);
+    }else{
+        $totalproductos = 0;
+    }
+
 }else{
     \Session::put('car', array());
     $car = Session::get('car');
@@ -26,7 +31,7 @@ if(Session::has('car')){
         </div>
 
     </div>
-@if(isset($totalproductos)>0)
+@if($totalproductos>0)
     <div class="row no-gutters">
         <div class="col-md-12  text-center">
             <a class="btn btn-cotizar" href="#" data-id="">

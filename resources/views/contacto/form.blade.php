@@ -1,4 +1,4 @@
-<form action="{{url('/solicitud/enviada')}}" method="post" enctype="multipart/form-data">
+<form action="{{url('/enviar/solicitud')}}" method="post" enctype="multipart/form-data">
 {{csrf_field()}}
     <div class="form-group">
         <label for="producto">Producto </label><span class="text-red"> * </span>
