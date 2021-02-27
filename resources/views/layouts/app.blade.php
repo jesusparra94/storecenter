@@ -158,26 +158,25 @@ font-weight: bold !important;
         @include('inicio.navbar')
         @include('inicio.sidebar')
 
+            <section class="content">
+                {{-- <div class=" d-none d-xl-block">  d-block d-xl-none" --}}
 
+                    <div class="container">
 
-            <section class="content d-block d-xl-none">
+                        <div class="row">
+                            <div class="col-3 d-none d-xl-block" style="background: #234560; color:#FFF;">
+                                @include('inicio.menu')
+                            </div>
+                            <div class="col-12 col-xl-9">
+                                @yield('content')
+                            </div>
+                        </div>
 
-                @yield('content')
+                    </div>
+
             </section>
 
-            <div class=" d-none d-xl-block">
-                <div class="row">
-                    <div class="col-3" style="background: #234560; color:#FFF;">
-                        @include('inicio.menu')
-                    </div>
-                    <div class="col-9">
-                        @yield('content')
-                    </div>
-                </div>
-
-            </div>
         @include('inicio.footer')
-
 
     </div>
 

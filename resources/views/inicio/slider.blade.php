@@ -2,7 +2,7 @@
   <div class="carousel-inner">
     @foreach($sliders as $key => $slider)
     <div class="carousel-item active">
-      <img src="https://www.storecenter.cl/cph_upl/{{$slider->BAN_UBICACION}}" class="d-block w-100 img-fluid" alt="..." style="height: 200px; object-fit: none" >
+      <img src="https://www.storecenter.cl/cph_upl/{{$slider->BAN_UBICACION}}" class="d-block w-100 img-fluid" alt="..." style="height: 200px; object-fit: unset" >
     </div>
       
     @endforeach
