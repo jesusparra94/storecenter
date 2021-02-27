@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
 use App\Models\Producto;
 use App\Models\Cotizaciones;
 use App\Models\ProductosCategorias;
@@ -11,6 +13,7 @@ use App\Models\Productos;
 use App\Models\Novedades;
 use App\Models\Slider;
 use App\Models\Contenidos;
+use App\Mail\CotizacionUnica;
 
 class ContactoController extends Controller
 {
@@ -42,6 +45,7 @@ class ContactoController extends Controller
                                 ->first();
         return view('contacto.index',compact('categorias','subcategorias','destacados','empresa','footer'));
     }
+
     public function insert(Request $request){
 
 
@@ -51,15 +55,15 @@ class ContactoController extends Controller
             'empresa'=> 'required|max:320|min:2',
             'email'=> 'required|email',
             'telefono'=> 'required|max:15|min:7',
-            'region'=> 'required|max:320|min:2',
-            'comuna'=> 'required|max:320|min:2',
+            'region'=> 'required',
+            'comuna'=> 'required',
             'ciudad'=> 'required|max:320|min:2',
             'comentarios' => 'required|max:320|min:2'
         ]);
 
 
 
-            /*
+
         $data = request();
 
         $categorias = ProductosCategorias::where([['CAT_PADRE', '=' , 0],['CAT_ESTADO', '=' , 1]])
@@ -79,8 +83,8 @@ class ContactoController extends Controller
 
         $footer =  Contenidos:: where([['CON_CODIGO', '=' , 'pie']])
                                 ->first();
-        $detalles = Producto::where([['PRO_ID', '=' , $data['idproducto']]])
-                                ->get();
+        //$detalles = Producto::where([['PRO_ID', '=' , $data['idproducto']]])
+         //                       ->get();
         $cotizacion = Cotizaciones::insert([
                     'fecha' => date("Y-m-d"),
                     'cliente' => $data['nombre'],
@@ -89,8 +93,7 @@ class ContactoController extends Controller
                     'telefono' => $data['telefono'],
                     'email' => $data['email'],
                     'comentarios' => $data['comentarios'],
-                    'producto' => $data['producto'],
-                    'codigo' => $data['idproducto']
+                    'producto' => $data['producto']
 
         ]);
         $num = Cotizaciones::select('id')
@@ -109,11 +112,34 @@ class ContactoController extends Controller
             $comentarios = $data['comentarios'];
             $mail = Mail::to($data['email'])->send(new CotizacionUnica($nombre,$producto,$codigo,$ciudad,$empresa,$email,$telefono,'cliente',$num[0]->id,$comentarios));
             $mail = Mail::to($data['email'])->send(new CotizacionUnica($nombre,$producto,$codigo,$ciudad,$empresa,$email,$telefono,'jefe',$num[0]->id,$comentarios));
-            return redirect('/cotizacion/generada/'.$data['idproducto']);
+            return redirect('/solicitud/enviada/');
             //return view('cotizaciones.mensaje',compact('categorias','subcategorias','empresa','footer','detalles'))->with('Mensaje', 'Cotización generada exitosamente.');
 
         }
 
-        */
+
+    }
+
+    public function cotizacioncontacto(){
+        $categorias = ProductosCategorias::where([['CAT_PADRE', '=' , 0],['CAT_ESTADO', '=' , 1]])
+                                            ->orderBy('CAT_NOMBRE', 'asc')
+                                            ->get();
+
+        foreach ($categorias as $key => $value) {
+
+            $subcategorias[] =ProductosCategorias::where([['CAT_PADRE', '=' , $value["CAT_ID"]],['CAT_ESTADO', '=' , 1]])
+                                                                ->orderBy('CAT_NOMBRE', 'asc')
+                                                                ->get();
+        }
+
+
+        $empresa =  Contenidos:: where([['CON_CODIGO', '=' , 'txt_empresa']])
+                                ->first();
+
+        $footer =  Contenidos:: where([['CON_CODIGO', '=' , 'pie']])
+                                ->first();
+        //$detalles = Producto::where([['PRO_ID', '=' , $idproducto]])
+        //                        ->get();
+        return view('contacto.mensaje',compact('categorias','subcategorias','empresa','footer'))->with('Mensaje', 'Mensaje enviado exitosamente.');
     }
 }

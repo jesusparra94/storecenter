@@ -50,7 +50,7 @@
     <div class="form-row">
         <div class="form-group col-md-6">
         <label for="region">Región</label> <span class="text-red"> * </span>
-                <select name="region" class="form-control region">
+                <select name="region" class="form-control region {{$errors->has('region')? 'is-invalid': '' }}">
                   <option selected value="0">Seleccionar Región</option>
                   <option  value="14">Región de Los Ríos</option>
                   <option  value="13">Región Metropolitana</option>
@@ -76,7 +76,7 @@
         </div>
         <div class="form-group col-md-6">
             <label for="comuna">Comuna</label> <span class="text-red"> * </span>
-                <select name="comuna" class="form-control comuna">
+                <select name="comuna" class="form-control comuna {{$errors->has('comuna')? 'is-invalid': '' }}">
                   <option selected value="0">Seleccionar Comuna</option>
                 </select>
             @if($errors->has('comuna'))
@@ -106,6 +106,7 @@
             </div>
         @endif
     </div>
+
     <div class="form-group">
         <div class="col-md-12">
             {!! NoCaptcha::display() !!}
@@ -116,6 +117,7 @@
                 </div>
         @endif
     </div>
+
     <div class="form-group">
         <div class="col-md-5">
             <input type="submit" class="btn btn-cotizar"  value="Enviar"/>

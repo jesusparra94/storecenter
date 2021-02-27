@@ -153,7 +153,6 @@
 </div>
 @endforeach
 @else
-@php $detalles =  \Session::get('detalles'); @endphp
 @foreach($detalles as $producto)
 
 @php $imagenes =explode(",",$producto->PRO_IMAGENES); @endphp

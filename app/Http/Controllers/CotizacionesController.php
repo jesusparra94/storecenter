@@ -25,8 +25,8 @@ class CotizacionesController extends Controller
             'empresa'=> 'required|max:320|min:2',
             'email'=> 'required|email',
             'telefono'=> 'required|max:15|min:7',
-            'region'=> 'required|max:320|min:2',
-            'comuna'=> 'required|max:320|min:2',
+            'region'=> 'required',
+            'comuna'=> 'required',
             'ciudad'=> 'required|max:320|min:2',
             'comentarios' => 'required|max:320|min:2'
         ]);
@@ -55,6 +55,7 @@ class CotizacionesController extends Controller
                                 ->first();
         $detalles = Producto::where([['PRO_ID', '=' , $data['idproducto']]])
                                 ->get();
+
         $cotizacion = Cotizaciones::insert([
                     'fecha' => date("Y-m-d"),
                     'cliente' => $data['nombre'],
@@ -67,12 +68,14 @@ class CotizacionesController extends Controller
                     'codigo' => $data['idproducto']
 
         ]);
+
         $num = Cotizaciones::select('id')
                             ->orderByDesc('cotizaciones.id')
                             ->limit(1)
                             ->get();
 
         if($cotizacion){
+
             $nombre = $data['nombre'];
             $producto = $data['producto'];
             $codigo = $data['idproducto'];
@@ -91,7 +94,7 @@ class CotizacionesController extends Controller
 
     }
 
-    public function cotizacionstatus($idproducto){
+    public function cotizacionid($idproducto){
         $categorias = ProductosCategorias::where([['CAT_PADRE', '=' , 0],['CAT_ESTADO', '=' , 1]])
                                             ->orderBy('CAT_NOMBRE', 'asc')
                                             ->get();
