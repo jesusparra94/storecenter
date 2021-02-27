@@ -66,19 +66,22 @@
       </div>
       @if(Session::has('id'))
       <div class="row no-gutters">
-        <div class="col-md-5 col-sm-7 text-center mx-auto">
+        <div class="col-md-7 col-sm-7 text-center mx-auto">
             <div class="card m-3" style="background-color: #234560;color:#fff;">
-                <div class="card-body">
-                    <div class="row no-gutters">
+                <div class="card-body" style="padding:5px;">
+                    <div class="row no-gutters" style="display: flex;justify-content: center;align-items: center;">
                         <div class="col-md-7  pr-2" style="border-right:0.9px solid #fff;">
                             <h5 class="">Precio Normal: ${{number_format($producto->PRO_PRECIO,0, '', '.')}}</h5>
                             <p class="textcantidad">Tiene <b>{{$totalcar}}</b> unidades agregadas</p>
                         </div>
                         <div class="col-md-5 p-2">
-                          <div style="cursor: pointer;" class="btn-addcar" data-totalcar="{{$totalcar}}" data-id="{{$producto->PRO_ID}}">
-                            <i class="fas fa-cart-plus" style="font-size:35px;"></i>
-                            <p>Agregar al carro</p>
-                          </div>
+                            <div class="pb-2">
+                                <input class="form-control mx-auto text-center" type="number" name="cantidadp" value="1" placeholder="N°" style="width:50%;">
+                            </div>
+                            <button class="btn-addcar btn btn-cotizar" style="width:70%;font-size:12px;" data-totalcar="{{$totalcar}}" data-id="{{$producto->PRO_ID}}">
+                                Añadir al
+                                <i class="fas fa-cart-plus" style="font-size:20px;float:right;"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -153,7 +156,6 @@
 </div>
 @endforeach
 @else
-@php $detalles =  \Session::get('detalles'); @endphp
 @foreach($detalles as $producto)
 
 @php $imagenes =explode(",",$producto->PRO_IMAGENES); @endphp

@@ -38,7 +38,7 @@ Route::get('/listado/producto/{id}', [ProductoController::class, 'index'])->name
 Route::get('/producto/{id}', [ProductoController::class, 'detalles'])->name('detalle-producto');
 Route::get('/producto/{id}/pdf', [ProductoController::class, 'generarpdf'])->name('generar-pdf');
 Route::get('/cotizar/{id}', [ProductoController::class, 'cotizar'])->name('cotizar-producto');
-Route::get('/cotizacion/generada/{id}', [CotizacionesController::class, 'cotizacionstatus'])->name('cotizacion-generada');
+Route::get('/cotizacion/generada/{id}', [CotizacionesController::class, 'cotizacionid'])->name('cotizacion-generada');
 Route::post('/generar/cotizacion', [CotizacionesController::class, 'insert'])->name('generar-cotizacion');
 Route::get('/novedades/{id}', [ProductoController::class, 'novedades'])->name('novedades-producto');
 Route::post('/buscar', [ProductoController::class, 'buscarproducto'])->name('buscar-producto');
@@ -48,7 +48,8 @@ Route::post('car/add', [CarController::class, 'add'])->name('add-car');
 
 //contacto
 Route::get('/servicio-cliente', [ContactoController::class, 'index'])->name('formulario-contacto');
-Route::post('/solicitud/enviada', [ContactoController::class, 'insert'])->name('generar-cotizacion');
+Route::post('/enviar/solicitud', [ContactoController::class, 'insert'])->name('enviar-solicitud');
+Route::get('/solicitud/enviada', [ContactoController::class, 'cotizacioncontacto'])->name('solicitud-enviada');
 //Route::get('car/add2/{id}', [CarController::class, 'add2'])->name('add-car2');
 
 Route::group(['middleware'=>['login']], function(){

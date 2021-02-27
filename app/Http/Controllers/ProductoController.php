@@ -146,9 +146,9 @@ class ProductoController extends Controller
                                 ->first();
         $detalles = Producto::where([['PRO_ID', '=' , $id]])
                                 ->get();
-        \Session::put('detalles', $detalles);
+        //\Session::put('detalles', $detalles);
 
-        return view('producto.descripcion',compact('categorias','subcategorias','destacados','empresa','footer'))->with('Modo', 'Cotizar');
+        return view('producto.descripcion',compact('categorias','subcategorias','destacados','empresa','footer','detalles'))->with('Modo', 'Cotizar');
     }
 
     public function buscarproducto(Request $request){
