@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand nav-bar d-none d-xl-flex">
   <ul class="navbar-nav">
       <li class="nav-item ml-auto">
-          <a class="nav-link colorlink" data-widget="pushmenu" href="{{url('/')}}" role="button"> <img src="{{asset('img/logo.png')}}" alt="" style="height: 60px; object-fit: contain;"> </a>
+          <a class="nav-link colorlink" href="{{url('/')}}"> <img src="{{asset('img/logo.png')}}" alt="" style="height: 60px; object-fit: contain;"> </a>
         </li>
 
   </ul>
