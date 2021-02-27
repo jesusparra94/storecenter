@@ -2,7 +2,6 @@
 
 @section('content')
 @php
-$totalproductos = 0;
 if(Session::has('car')){
     $car = Session::get('car');
     if(count($car)>0){
