@@ -59,6 +59,7 @@ Route::group(['middleware'=>['login']], function(){
     // });
 
 Route::get('/cuenta', [ClientesController::class, 'micuenta'])->name('micuenta');
+Route::get('/misdatos', [ClientesController::class, 'misdatos'])->name('misdatos');
 Route::post('/logout', [ClientesController::class, 'logout'])->name('logout');
 Route::get('/carrito', [CarController::class, 'carrito'])->name('carrito');
 Route::post('car/delete', [CarController::class, 'deleteproducto'])->name('delete-producto');
