@@ -161,7 +161,7 @@ font-weight: bold !important;
             <section class="content">
                 {{-- <div class=" d-none d-xl-block">  d-block d-xl-none" --}}
 
-                    <div class="container">
+                    <div class="container-fluid">
 
                         <div class="row">
                             <div class="col-3 d-none d-xl-block" style="background: #234560; color:#FFF;">
