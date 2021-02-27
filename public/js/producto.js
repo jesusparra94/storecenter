@@ -120,6 +120,7 @@ $(document).on("click", ".btnpdf", function(){
 
     var idproducto = $(this).data("id");
     var totalcar = $(this).data("totalcar");
+    var cantidadp = $('input[name=cantidadp]').val();
 
     /*
     $(this).addClass("d-none");
@@ -138,87 +139,95 @@ $(document).on("click", ".btnpdf", function(){
 
   */
 
+if(cantidadp>0){
+    $('input[name=cantidadp]').removeClass('is-invalid');
     datos = {
 
-      _token: $("meta[name='csrf-token']").attr("content"),
-      _method: "POST",
-      id: idproducto,
+        _token: $("meta[name='csrf-token']").attr("content"),
+        _method: "POST",
+        id: idproducto,
+        cantidadp: cantidadp,
 
-    };
+      };
 
-    var hrf = location.origin;
-    var public = "/";
-    var url = hrf + public + "car/add";
+      var hrf = location.origin;
+      var public = "/";
+      var url = hrf + public + "car/add";
 
-    console.log(url );
+      console.log(url );
 
-    $.ajax({
+      $.ajax({
 
-      type: "POST",
-      url: url,
-      data: datos,
+        type: "POST",
+        url: url,
+        data: datos,
 
-      beforeSend: function() {
-        // setting a timeout
-            $( "p.textcantidad" ).html( '<div class="spinner-border text-light" role="status"><span class="sr-only">Loading...</span></div>');
-            $(".btn-addcar").html('<i class="far fa-check-circle"  style="font-size:35px;"></i><p>Añadido correctamente</p>');
-      },
+        beforeSend: function() {
+          // setting a timeout
+              $( "p.textcantidad" ).html( '<div class="spinner-border text-light" role="status"><span class="sr-only">Loading...</span></div>');
+              $(".btn-addcar").html('<i class="far fa-check-circle"  style="font-size:35px;"></i><p>Añadido correctamente</p>');
+        },
 
-      success: function (respuesta) {
-        var coun = $(".badgecar").data('count');
-        console.log(respuesta);
-        setTimeout(function status(){
-            $( "p.textcantidad" ).html( 'Tiene <b>'+(respuesta)+'</b> unidades agregadas');
-            $(".btn-addcar").html('<i class="fas fa-cart-plus" style="font-size:35px;"></i><p>Agregar al carro</p>');
-            //$(".badgecar").html(coun+respuesta);
-          },500);
-          window.location.reload();
-  /*
-        var itemcarrito = Object.keys(respuesta).length;
-
-
-
-        var login = $(".login").val();
+        success: function (respuesta) {
+          var coun = $(".badgecar").data('count');
+          console.log(respuesta);
+          setTimeout(function status(){
+              $( "p.textcantidad" ).html( 'Tiene <b>'+(respuesta)+'</b> unidades agregadas');
+              $(".btn-addcar").html('Añadir al <i class="fas fa-cart-plus" style="font-size:20px;float:right;"></i>');
+              //$(".badgecar").html(coun+respuesta);
+            },500);
+            window.location.reload();
+    /*
+          var itemcarrito = Object.keys(respuesta).length;
 
 
 
-        if (itemcarrito > 3 && login == 0) {
-
-          $("#modalEmail").modal("show");
-
-        }
+          var login = $(".login").val();
 
 
 
-        $("#tablaCarrito").html("");
+          if (itemcarrito > 3 && login == 0) {
+
+            $("#modalEmail").modal("show");
+
+          }
 
 
 
-        $(".totalunidadcarrito").text(
-
-          "Tienes " + itemcarrito + " tipos de Productos"
-
-        );
+          $("#tablaCarrito").html("");
 
 
 
-        $(".badgecar").text(itemcarrito);
+          $(".totalunidadcarrito").text(
+
+            "Tienes " + itemcarrito + " tipos de Productos"
+
+          );
 
 
 
-        listarcarro(respuesta, id);
-  */
-      },
+          $(".badgecar").text(itemcarrito);
 
 
 
-      error: function () {
+          listarcarro(respuesta, id);
+    */
+        },
 
-        alert("Hay un error");
 
-      },
 
-    });
+        error: function () {
+
+          alert("Hay un error");
+
+        },
+
+      });
+}else{
+    $('input[name=cantidadp]').addClass('is-invalid');
+}
+
+
 
   });
 

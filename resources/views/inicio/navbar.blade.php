@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand nav-bar d-none d-xl-flex">
   <ul class="navbar-nav">
       <li class="nav-item ml-auto">
-          <a class="nav-link colorlink" data-widget="pushmenu" href="{{url('/')}}" role="button"> <img src="{{asset('img/logo.png')}}" alt="" style="height: 60px; object-fit: contain;"> </a>
+          <a class="nav-link colorlink" href="{{url('/')}}"> <img src="{{asset('img/logo.png')}}" alt="" style="height: 60px; object-fit: contain;"> </a>
         </li>
 
   </ul>
@@ -16,8 +16,7 @@
         <a class="nav-link colorlink" href="{{url('/servicio-cliente')}}">GUÍA DE AYUDA</a>
         <a class="nav-link colorlink" href="{{url('/clientes')}}">CLIENTES</a>
         @if(Session::has('id'))
-            @php $cliente = Session::get('id'); @endphp
-            <a class="nav-link colorlink logout" data-cliente="{{$cliente}}" style="cursor: pointer">CERRAR SESIÓN</a>
+            <a class="nav-link colorlink" href="{{url('/cuenta')}}">MI CUENTA</a>
         @else
             <a class="nav-link colorlink" data-toggle="modal" data-target="#modalInicio" style="cursor: pointer">INICIAR SESIÓN</a>
         @endif
@@ -99,7 +98,7 @@
         @if(Session::has('id'))
             @php $cliente = Session::get('id'); @endphp
             <a class="nav-link colorlink dropdown-item" href="{{url('/carrito')}}">CARRITO</a>
-            <a class="nav-link colorlink logout" data-cliente="{{$cliente}}" style="cursor: pointer">CERRAR SESIÓN</a>
+            <a class="nav-link colorlink logout" data-cliente="{{$cliente}}" style="cursor: pointer">MI CUENTA</a>
         @else
             <a class="nav-link colorlink" data-toggle="modal" data-target="#modalInicio" style="cursor: pointer">INICIAR SESIÓN</a>
         @endif

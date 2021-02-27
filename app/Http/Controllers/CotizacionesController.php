@@ -28,7 +28,8 @@ class CotizacionesController extends Controller
             'region'=> 'required',
             'comuna'=> 'required',
             'ciudad'=> 'required|max:320|min:2',
-            'comentarios' => 'required|max:320|min:2'
+            'comentarios' => 'required|max:320|min:2',
+            'g-recaptcha-response' => 'required|captcha',
         ]);
 
 
