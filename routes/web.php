@@ -43,9 +43,6 @@ Route::post('/generar/cotizacion', [CotizacionesController::class, 'insert'])->n
 Route::get('/novedades/{id}', [ProductoController::class, 'novedades'])->name('novedades-producto');
 Route::post('/buscar', [ProductoController::class, 'buscarproducto'])->name('buscar-producto');
 
-//Carrito
-Route::post('car/add', [CarController::class, 'add'])->name('add-car');
-
 //contacto
 Route::get('/servicio-cliente', [ContactoController::class, 'index'])->name('formulario-contacto');
 Route::post('/enviar/solicitud', [ContactoController::class, 'insert'])->name('enviar-solicitud');
@@ -61,9 +58,14 @@ Route::group(['middleware'=>['login']], function(){
 Route::get('/cuenta', [ClientesController::class, 'micuenta'])->name('micuenta');
 Route::get('/misdatos', [ClientesController::class, 'misdatos'])->name('misdatos');
 Route::post('/logout', [ClientesController::class, 'logout'])->name('logout');
+//Carrito
+Route::post('car/add', [CarController::class, 'add'])->name('add-car');
 Route::get('/carrito', [CarController::class, 'carrito'])->name('carrito');
 Route::post('car/delete', [CarController::class, 'deleteproducto'])->name('delete-producto');
 Route::post('car/clear', [CarController::class, 'limpiarcar'])->name('limpiar-carrito');
 Route::get('car/pdf', [CarController::class, 'generarpdf'])->name('pdf-carrito');
+//FinalizarCompra (Cotización)
+Route::get('/finalizar-compra', [CarController::class, 'insert'])->name('finalizar-compra');
+Route::get('/pedido/generado', [CarController::class, 'pedidogenerado'])->name('pedido-generado');
 
 });

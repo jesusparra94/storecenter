@@ -3,184 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+
 use App\Models\Car;
 use App\Models\Producto;
+use App\Models\Pedidos;
 use App\Models\ProductosCategorias;
 use App\Models\Contenidos;
+use App\Models\Clientes;
+use App\Models\Comunas;
+use App\Mail\CotizacionCarrito;
 
 class CarController extends Controller
 {
-    //
-
-    public function add2($id){
-
-        //\Session::forget('car');
-
-        if(!\Session::has('car')) \Session::put('car', array());
-        $car = \Session::get('car');
-        //return count(\Session::get('car'));
-        if(count(\Session::get('car'))>0){
-            $igual = 0;
-            foreach ($car as $key => $value) {
-                if($value['PRO_ID']==$id){
-                    $igual = 1;
-                }
-            }
-            //return $igual;
-            //return $car[$id];
-            if($igual){
-
-                $cant = $car[$id]->cantidadcompra + 1;
-                $car[$id]->cantidadcompra = $cant;
-            }else{
-
-                $producto = Producto::where("PRO_ID","=",$id)->first();
-
-                $car = \Session::get('car');
-                $producto->cantidadcompra = 1;
-                $car[$id] = $producto;
-
-                \Session::put('car',$car);
-            }
-        }else{
-            $producto = Producto::where("PRO_ID","=",$id)->first();
-
-               // $car = \Session::get('car');
-                $producto->cantidadcompra = 1;
-                $car[$id] = $producto;
-
-                \Session::put('car',$car);
-        }
-
-
-
-
-        return  \Session::get('car');
-
-
-
-
-
-
-        //if(!\Session::has('car')) \Session::put('car', array());
-        //$producto = Producto::where("PRO_ID","=",$id)->first();
-        //guardar en id del producto los datos
-
-        //unset($car[$id]);
-        //\Session::forget('car');
-
-        //\Session::push('car', ['item5'=>15]);
-        $car = \Session::get('car');
-        $total = count($car);
-
-        foreach ($car as $clave => $item){
-            return $item;
-        }
-
-        return $total;
-
-       /*
-        $total = count($car);
-        if($total>0){
-            foreach($car['idproducto'] as $i){
-                if($i['idproducto']==$id){
-                    $data = array(
-                        'idproducto' => $id,
-                        'cantidad' => $i['cantidad']+1
-                    );
-                    \Session::put('car', $data);
-                    return "Ya existe";
-                }else{
-                    $data = array(
-                        'idproducto' => $id,
-                        'cantidad' => 1
-                    );
-                    \Session::push('car', $data);
-                    return "Agregado";
-                }
-            }
-        }else{
-            \Session::push('car', array(
-                'idproducto' => $id,
-                'cantidad' => 1
-
-            ));
-            return "Agregado";
-        }
-*/
-
-
-        //return $car;
-        if($car['idproducto']==$id){
-            \Session::put('car', array(
-                'idproducto' => $id,
-                'cantidad' => $car['cantidad']+1
-
-            ));
-        }else{
-
-            \Session::push('car', array(
-                'idproducto' => $id,
-                'cantidad' => 1
-
-            ));
-            return "no existe";
-        }
-        return $car;
-        \Session::push('car', array(
-            $id => 1
-        ));
-
-        if(isset($car[$id])){
-            $data = array(
-                $id => $car[$id]+1
-            );
-            \Session::put('car', $data);
-        }else{
-            $data = array(
-                $id =>1
-            );
-            \Session::push('car', $data);
-        }
-
-
-        //\Session::put('car', $data);
-        return $car;
-
-
-        //unset($car[$data->id]);
-        $idproducto = $id;
-        $cant = 1;
-        //$data = Arr::add(['id' => $idproducto], 'cant', $cant);
-        $data = array(
-            "id" => $idproducto,
-            "cant" => $cant,
-        );
-        \Session::put('car', $data);
-        $car = \Session::get('car');
-        return $car[$idproducto];
-        //$producto = Producto::where("PRO_ID","=",$id)->first();
-        \Session::put('car', 1);
-        if($car = \Session::get('car')){
-            return $car;
-        }else{
-            \Session::put('car', 1);
-            return "NO EXISTE";
-        }
-
-
-
-        $producto = Producto::where("PRO_ID","=",$id)->first();
-
-        $car[$productos->id] = $productos;
-
-        \Session::put('car', $car);
-
-
-        //return \Session::get('car');
-
-
-     }
 
     public function add(Request $request){
 
@@ -265,5 +100,100 @@ class CarController extends Controller
         \Session::put('car', $car);
 
         return "ok";
+    }
+
+    public function insert(){
+        $car = \Session::get('car');
+        $id = \Session::get('id');
+        $cliente = Clientes::where('vip_id','=',$id)
+                    ->select('vip_nombre', 'vip_rut', 'vip_mail', 'vip_fono_contacto', 'vip_direccion', 'vip_comuna', 'vip_ciudad', 'vip_giro')
+                    ->get();
+        $comuna = Comunas::where('com_id','=',$cliente[0]->vip_comuna)
+                    ->select('com_nombre')
+                    ->get();
+
+
+        $categorias = ProductosCategorias::where([['CAT_PADRE', '=' , 0],['CAT_ESTADO', '=' , 1]])
+                                            ->orderBy('CAT_NOMBRE', 'asc')
+                                            ->get();
+
+        foreach ($categorias as $key => $value) {
+
+            $subcategorias[] =ProductosCategorias::where([['CAT_PADRE', '=' , $value["CAT_ID"]],['CAT_ESTADO', '=' , 1]])
+                                                                ->orderBy('CAT_NOMBRE', 'asc')
+                                                                ->get();
+        }
+
+
+        $empresa =  Contenidos:: where([['CON_CODIGO', '=' , 'txt_empresa']])
+                                ->first();
+
+        $footer =  Contenidos:: where([['CON_CODIGO', '=' , 'pie']])
+                                ->first();
+        $totalsiniva = 0;
+
+        foreach ($car as $key => $value) {
+            $totalsiniva = $totalsiniva + (($value->PRO_PRECIO)*($value->cantidadcompra));
+        }
+
+        $pedido = Pedidos::insert([
+                    'PED_NOMBRE' => $cliente[0]->vip_nombre,
+                    'PED_CORREO' => $cliente[0]->vip_mail,
+                    'PED_FONO' => $cliente[0]->vip_fono_contacto,
+                    'PED_FECHA' => date("Y-m-d"),
+                    'PED_COMENTARIOS' => '',
+                    'PED_DIRECCION' =>$cliente[0]->vip_direccion,
+                    'PED_TOTAL' =>$totalsiniva,
+                    'PED_USUARIO' => $id,
+        ]);
+
+        $lastpedido = Pedidos::select('PED_ID')
+                    ->orderByDesc('PEDIDOS.PED_FECHA')
+                    ->limit(1)
+                    ->get();
+        //return $lastpedido;
+
+
+        if($pedido){
+            $carrito = $car;
+            $idpedido = $lastpedido[0]->PED_ID;
+            $nombre = $cliente[0]->vip_nombre;
+            $rut = $cliente[0]->vip_rut;
+            $giro = $cliente[0]->vip_giro;
+            $email = $cliente[0]->vip_mail;
+            $direccion = $cliente[0]->vip_direccion;
+            $comuna = $cliente[0]->vip_comuna;
+            $ciudad = $cliente[0]->vip_ciudad;
+            $telefono = $cliente[0]->vip_fono_contacto;
+            $mail = Mail::to('jdparrau@gmail.com')->send(new CotizacionCarrito($carrito,$idpedido,$nombre,$rut,$giro,$email,$direccion,$comuna,$ciudad,$telefono,$totalsiniva,'cliente'));
+            $mail = Mail::to('yuserlybracho@gmail.com')->send(new CotizacionCarrito($carrito,$idpedido,$nombre,$rut,$giro,$email,$direccion,$comuna,$ciudad,$telefono,$totalsiniva,'jefe'));
+            return redirect('/pedido/generado/');
+            //return view('cotizaciones.mensaje',compact('categorias','subcategorias','empresa','footer','detalles'))->with('Mensaje', 'Cotización generada exitosamente.');
+
+        }
+
+    }
+
+    public function pedidogenerado(){
+        $categorias = ProductosCategorias::where([['CAT_PADRE', '=' , 0],['CAT_ESTADO', '=' , 1]])
+                                            ->orderBy('CAT_NOMBRE', 'asc')
+                                            ->get();
+
+        foreach ($categorias as $key => $value) {
+
+            $subcategorias[] =ProductosCategorias::where([['CAT_PADRE', '=' , $value["CAT_ID"]],['CAT_ESTADO', '=' , 1]])
+                                                                ->orderBy('CAT_NOMBRE', 'asc')
+                                                                ->get();
+        }
+
+
+        $empresa =  Contenidos:: where([['CON_CODIGO', '=' , 'txt_empresa']])
+                                ->first();
+
+        $footer =  Contenidos:: where([['CON_CODIGO', '=' , 'pie']])
+                                ->first();
+        //$detalles = Producto::where([['PRO_ID', '=' , $idproducto]])
+        //                        ->get();
+        return view('carrito.mensaje',compact('categorias','subcategorias','empresa','footer'))->with('Mensaje', 'Pedido generado exitosamente.');
     }
 }

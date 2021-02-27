@@ -34,11 +34,11 @@ if(Session::has('car')){
 @if($totalproductos>0)
     <div class="row no-gutters">
         <div class="col-md-12  text-center">
-            <a class="btn btn-cotizar" href="#" data-id="">
-              Cotizar
+            <a class="btn btn-cotizar" href="{{url('/finalizar-compra')}}" data-id="">
+              Finalizar Compra
               <i class="fas fa-dollar-sign" style="font-size:20px;float:right;"></i>
             </a>
-            <a class="btn btn-cotizar" href="/car/pdf" data-id="">
+            <a class="btn btn-cotizar" href="{{url('/car/pdf')}}" data-id="">
               PDF
               <i class="far fa-file-pdf"  style="font-size:20px;float:right;"></i>
             </a>
