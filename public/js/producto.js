@@ -120,6 +120,7 @@ $(document).on("click", ".btnpdf", function(){
 
     var idproducto = $(this).data("id");
     var totalcar = $(this).data("totalcar");
+    var cantidadp = $('input[name=cantidadp]').val();
 
     /*
     $(this).addClass("d-none");
@@ -138,11 +139,13 @@ $(document).on("click", ".btnpdf", function(){
 
   */
 
+
     datos = {
 
       _token: $("meta[name='csrf-token']").attr("content"),
       _method: "POST",
       id: idproducto,
+      cantidadp: cantidadp,
 
     };
 
@@ -161,7 +164,7 @@ $(document).on("click", ".btnpdf", function(){
       beforeSend: function() {
         // setting a timeout
             $( "p.textcantidad" ).html( '<div class="spinner-border text-light" role="status"><span class="sr-only">Loading...</span></div>');
-            $(".btn-addcar").html('<i class="far fa-check-circle"  style="font-size:35px;"></i><p>Añadido correctamente</p>');
+            $(".btn-addcar").html('<i class="far fa-check-circle"  style="font-size:25px;"></i><p>Añadido correctamente</p>');
       },
 
       success: function (respuesta) {
@@ -219,6 +222,7 @@ $(document).on("click", ".btnpdf", function(){
       },
 
     });
+
 
   });
 

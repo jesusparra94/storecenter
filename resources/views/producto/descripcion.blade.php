@@ -68,16 +68,19 @@
       <div class="row no-gutters">
         <div class="col-md-5 col-sm-7 text-center mx-auto">
             <div class="card m-3" style="background-color: #234560;color:#fff;">
-                <div class="card-body">
+                <div class="card-body" style="padding:2px;">
                     <div class="row no-gutters">
-                        <div class="col-md-7  pr-2" style="border-right:0.9px solid #fff;">
+                        <div class="col-md-7  pr-2 align-self-center">
                             <h5 class="">Precio Normal: ${{number_format($producto->PRO_PRECIO,0, '', '.')}}</h5>
                             <p class="textcantidad">Tiene <b>{{$totalcar}}</b> unidades agregadas</p>
                         </div>
-                        <div class="col-md-5 p-2">
-                          <div style="cursor: pointer;" class="btn-addcar" data-totalcar="{{$totalcar}}" data-id="{{$producto->PRO_ID}}">
-                            <i class="fas fa-cart-plus" style="font-size:35px;"></i>
-                            <p>Agregar al carro</p>
+
+                        <div class="col-md-5 p-1 align-self-center">
+                            <input type="number" class="form-control text-center" name="cantidadp" placeholder="n°" value="1" style="width:50px;margin:0px auto;">
+                            <p></p>
+                            <div style="cursor: pointer;" class="btn-addcar" data-totalcar="{{$totalcar}}" data-id="{{$producto->PRO_ID}}">
+                                <i class="fas fa-cart-plus mt-2" style="font-size:25px;"></i>
+                                <p>Agregar al carro</p>
                           </div>
                         </div>
                     </div>

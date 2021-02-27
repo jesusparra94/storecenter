@@ -186,6 +186,8 @@ class CarController extends Controller
 
         $data = request();
         $id = $data->id;
+        $cantp = $data->cantidadp;
+
         if(!\Session::has('car')) \Session::put('car', array());
             $car = \Session::get('car');
             if(count(\Session::get('car'))>0){
@@ -197,19 +199,19 @@ class CarController extends Controller
                 }
 
                 if($igual){
-                    $cant = $car[$id]->cantidadcompra + 1;
+                    $cant = $car[$id]->cantidadcompra + $data->cantidadp;
                     $car[$id]->cantidadcompra = $cant;
                 }else{
                     $producto = Producto::where("PRO_ID","=",$id)->first();
                     $car = \Session::get('car');
-                    $producto->cantidadcompra = 1;
+                    $producto->cantidadcompra = $data->cantidadp;
                     $car[$id] = $producto;
 
                     \Session::put('car',$car);
                 }
             }else{
                 $producto = Producto::where("PRO_ID","=",$id)->first();
-                $producto->cantidadcompra = 1;
+                $producto->cantidadcompra = $data->cantidadp;
                 $car[$id] = $producto;
 
                 \Session::put('car',$car);
