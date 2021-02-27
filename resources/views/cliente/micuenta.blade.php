@@ -22,6 +22,10 @@
                     <li class="nav-item">
                       <a class="nav-link" href="#">Mis Datos</a>
                     </li>
+                    <li class="nav-item">
+                      @php $cliente = Session::get('id'); @endphp
+                      <a class="nav-link logout" data-cliente="{{$cliente}}" style="cursor: pointer">Cerrar Sesión</a>
+                    </li>
                   </ul>
               </nav>
         </div>

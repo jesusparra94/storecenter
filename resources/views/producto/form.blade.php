@@ -111,10 +111,19 @@
         <div class="col-md-12">
             {!! NoCaptcha::display() !!}
         </div>
-        @if($errors->has('g-recaptcha-response'))
+        {{--
+            @if($errors->has('g-recaptcha-response'))
                 <div class="invalid-feedback">
                     Recaptcha inválido.
                 </div>
+        @endif
+
+            --}}
+
+        @if ($errors->has('g-recaptcha-response'))
+            <span class="feedbak-error">
+                <strong>Recaptcha inválido.</strong>
+            </span>
         @endif
     </div>
 
