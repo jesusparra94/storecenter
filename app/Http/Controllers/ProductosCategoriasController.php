@@ -19,7 +19,7 @@ class ProductosCategoriasController extends Controller
                                             ->get();
 
         foreach ($categorias as $key => $value) {
-           
+
             $subcategorias[] =ProductosCategorias::where([['CAT_PADRE', '=' , $value["CAT_ID"]],['CAT_ESTADO', '=' , 1]])
                                                                 ->orderBy('CAT_NOMBRE', 'asc')
                                                                 ->get();
@@ -28,7 +28,7 @@ class ProductosCategoriasController extends Controller
         $destacados = Productos::where([['PRO_DESTACADO', '=' , 1],['PRO_ESTADO', '=' , 1]])
                                 ->orderBy('PRO_NOMBRE', 'asc')
                                 ->get();
-       
+
 
         $novedades = Novedades::where([['NOT_ESTADO', '=' , 1]])
                                 ->orderBy('NOT_FECHA', 'desc')
