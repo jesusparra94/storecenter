@@ -5,6 +5,21 @@
     <div id="menu" class="sidebar" style="width: 100%">
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+            <li class="nav-item mt-4" style="width: 100%">
+                <form action="{{url('/buscar')}}" method="post" enctype="multipart/form-data">
+                {{csrf_field()}}
+                    <div class="input-group" >
+                        <input class="form-control" type="search" placeholder="Buscar Producto" aria-label="Search" name="nameproducto" required>
+                        <div class="input-group-prepend" style="width:50px;display: flex;justify-content: center;align-items: center;">
+                            <button type="submit" style="background-color:#234560;border:none;"><i class="fas fa-search" style="color: #FFF;"></i></button>
+                        </div>
+
+                    </div>
+                </form>
+            </li>
+
+
             @foreach($categorias as $key => $categoria)
                 <li class="nav-item " style="width: 100%">
                     <a class="nav-link collapsed" data-toggle="collapse" href="#categoriaside{{$categoria->CAT_ID}}" role="button" aria-expanded="false" aria-controls="categoriaside{{$categoria->CAT_ID}}">
