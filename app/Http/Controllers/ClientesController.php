@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Contenidos;
 use App\Models\Productos;
 use App\Models\ProductosCategorias;
+use App\Models\PedidosProductos;
 use App\Models\Slider;
 use App\Models\Comunas;
 use App\Models\Regiones;
@@ -95,7 +96,7 @@ class ClientesController extends Controller
         $idcliente = \Session::get('id');
 
         $pedidos = Pedidos::where('PED_USUARIO','=',$idcliente)
-                            ->orderBy('PED_FECHA', 'desc')
+                            ->orderBy('PED_ID', 'desc')
                             ->get();
 
 
@@ -186,6 +187,39 @@ class ClientesController extends Controller
         \Session::forget('id');
         return "ok";
 
+
+    }
+
+    public function detalles($id){
+
+        $categorias = ProductosCategorias::where([['CAT_PADRE', '=' , 0],['CAT_ESTADO', '=' , 1]])
+                                            ->orderBy('CAT_NOMBRE', 'asc')
+                                            ->get();
+
+        foreach ($categorias as $key => $value) {
+
+            $subcategorias[] =ProductosCategorias::where([['CAT_PADRE', '=' , $value["CAT_ID"]],['CAT_ESTADO', '=' , 1]])
+                                                                ->orderBy('CAT_NOMBRE', 'asc')
+                                                                ->get();
+        }
+
+
+        $empresa =  Contenidos:: where([['CON_CODIGO', '=' , 'txt_empresa']])
+                                ->first();
+
+        $footer =  Contenidos:: where([['CON_CODIGO', '=' , 'pie']])
+                                ->first();
+
+        $detalles = Pedidos::where('PED_ID','=',$id)
+                        ->get();
+        $productoscompra = PedidosProductos::where('PED_ID','=',$id)
+                        ->get();
+
+        $productos = Productos::get();
+
+        $idpedido = $id;
+
+        return view('cliente.detalles',compact('categorias','subcategorias','footer','empresa','detalles','productoscompra','productos','idpedido'));
 
     }
 

@@ -9,6 +9,7 @@ use App\Models\Car;
 use App\Models\Producto;
 use App\Models\Pedidos;
 use App\Models\ProductosCategorias;
+use App\Models\PedidosProductos;
 use App\Models\Contenidos;
 use App\Models\Clientes;
 use App\Models\Comunas;
@@ -147,6 +148,18 @@ class CarController extends Controller
                     'PED_USUARIO' => $id,
         ]);
 
+        $idPedido = Pedidos::orderBy('PED_ID', 'desc')
+                    ->first();
+        $idp = $idPedido['PED_ID'];
+
+        foreach ($car as $key => $value) {
+            PedidosProductos::insert([
+                'PED_ID' => $idp,
+                'PRO_ID' => $value['PRO_ID'],
+                'PP_CANTIDAD' => $value['cantidadcompra'],
+                'PP_PRECIO' =>$value['cantidadcompra']*$value['PRO_PRECIO']
+            ]);
+        }
         $lastpedido = Pedidos::select('PED_ID')
                     ->orderByDesc('PEDIDOS.PED_FECHA')
                     ->limit(1)
@@ -166,7 +179,7 @@ class CarController extends Controller
             $ciudad = $cliente[0]->vip_ciudad;
             $telefono = $cliente[0]->vip_fono_contacto;
             $mail = Mail::to('jdparrau@gmail.com')->send(new CotizacionCarrito($carrito,$idpedido,$nombre,$rut,$giro,$email,$direccion,$comuna,$ciudad,$telefono,$totalsiniva,'cliente'));
-            $mail = Mail::to('yuserlybracho@gmail.com')->send(new CotizacionCarrito($carrito,$idpedido,$nombre,$rut,$giro,$email,$direccion,$comuna,$ciudad,$telefono,$totalsiniva,'jefe'));
+            $mail = Mail::to('jdparrau@gmail.com')->send(new CotizacionCarrito($carrito,$idpedido,$nombre,$rut,$giro,$email,$direccion,$comuna,$ciudad,$telefono,$totalsiniva,'jefe'));
             return redirect('/pedido/generado/');
             //return view('cotizaciones.mensaje',compact('categorias','subcategorias','empresa','footer','detalles'))->with('Mensaje', 'Cotización generada exitosamente.');
 

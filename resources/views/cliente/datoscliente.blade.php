@@ -16,11 +16,15 @@
         <div class="col-12">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                       <a class="nav-link" href="/cuenta">Mis Pedidos</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item active">
                       <a class="nav-link" href="/misdatos">Mis Datos<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      @php $clienteid = Session::get('id'); @endphp
+                      <a class="nav-link logout" data-cliente="{{$clienteid}}" style="cursor: pointer">Cerrar Sesión</a>
                     </li>
                   </ul>
               </nav>

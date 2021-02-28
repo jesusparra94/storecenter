@@ -58,6 +58,8 @@ Route::group(['middleware'=>['login']], function(){
 Route::get('/cuenta', [ClientesController::class, 'micuenta'])->name('micuenta');
 Route::get('/misdatos', [ClientesController::class, 'misdatos'])->name('misdatos');
 Route::post('/logout', [ClientesController::class, 'logout'])->name('logout');
+Route::get('/pedido/{id}', [ClientesController::class, 'detalles'])->name('detalles');
+
 //Carrito
 Route::post('car/add', [CarController::class, 'add'])->name('add-car');
 Route::get('/carrito', [CarController::class, 'carrito'])->name('carrito');
