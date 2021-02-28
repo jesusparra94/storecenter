@@ -219,6 +219,8 @@ class ClientesController extends Controller
 
         $idpedido = $id;
 
+
+
         return view('cliente.detalles',compact('categorias','subcategorias','footer','empresa','detalles','productoscompra','productos','idpedido'));
 
     }

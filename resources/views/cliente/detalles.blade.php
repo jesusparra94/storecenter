@@ -20,6 +20,7 @@
         <div class="col-md-12">
           <div class="card-body">
             <h3 class="">Total: {{number_format($item->PED_TOTAL,0, '', '.')}}</h3>
+            <h3 class="">Fecha/Hora: {{$item->PED_FECHA}}</h3>
             <br>
           </div>
         </div>
