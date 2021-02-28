@@ -38,3 +38,24 @@ input[name=cantidadp]::-webkit-outer-spin-button {
   margin: 0;
   -moz-appearance:textfield;
 }
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover{
+
+    background-color: none !important;
+    background: none !important;
+    border:none !important;
+}
+.page-link{
+
+    background-color:#234560 !important;
+    background: #234560 !important;
+    color: #FFF;
+    border:none !important;
+}
+
+.page-item.active .page-link{
+
+    background-color: #234560 !important;
+    background: #234560 !important;
+    color: #FFF;
+
+}
