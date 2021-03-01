@@ -44,7 +44,7 @@ Route::get('/novedades/{id}', [ProductoController::class, 'novedades'])->name('n
 Route::post('/buscar', [ProductoController::class, 'buscarproducto'])->name('buscar-producto');
 
 //contacto
-Route::get('/servicio-cliente', [ContactoController::class, 'index'])->name('formulario-contacto');
+Route::get('/contacto', [ContactoController::class, 'index'])->name('formulario-contacto');
 Route::post('/enviar/solicitud', [ContactoController::class, 'insert'])->name('enviar-solicitud');
 Route::get('/solicitud/enviada', [ContactoController::class, 'cotizacioncontacto'])->name('solicitud-enviada');
 //Route::get('car/add2/{id}', [CarController::class, 'add2'])->name('add-car2');

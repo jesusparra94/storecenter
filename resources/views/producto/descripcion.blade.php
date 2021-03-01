@@ -123,7 +123,7 @@
 @endphp
 <div class="item">
 
-<div class="card mb-3" style="width: 100%;">
+<div class="mb-3" style="width: 100%;">
 
     <div class="row ml-1 mt-4 mb-5">
         <div class="col-md-12">
