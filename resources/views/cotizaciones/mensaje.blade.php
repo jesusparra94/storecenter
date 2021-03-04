@@ -40,10 +40,16 @@
         </div>
 
 @endforeach
-
+@include('inicio.destacados')
 </div>
 
 
+
+@endsection
+
+@section('script')
+
+<script src="{{ asset('js/inicio.js') }}"></script>
 
 @endsection
 

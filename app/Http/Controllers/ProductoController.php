@@ -232,6 +232,12 @@ class ProductoController extends Controller
                                 ->first();
         $detalles = Producto::where([['PRO_ID', '=' , $data['idproducto']]])
                                 ->get();
+
+
+        $destacados = Productos::where([['PRO_DESTACADO', '=' , 1],['PRO_ESTADO', '=' , 1]])
+        ->orderBy('PRO_NOMBRE', 'asc')
+        ->get();
+
         $cotizacion = Cotizaciones::insert([
                     'fecha' => date("Y-m-d"),
                     'cliente' => $data['nombre'],

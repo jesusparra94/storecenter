@@ -30,8 +30,8 @@
           </div>
           <div class="form-group col-md-6">
             <label for="rut">Rut</label> <span class="text-red"> * </span>
-            <input type="text" class="form-control {{$errors->has('rut')? 'is-invalid': '' }}" name="rut">
-            <small>Sin puntos ni guión, ejemplo(23223223K)</small>
+            <input type="text" class="form-control {{$errors->has('rut')? 'is-invalid': '' }}" name="rut" autocomplete="off">
+            <small class="ruttext text-danger">Sin puntos ni guión, ejemplo(23223223K)</small>
             @if($errors->has('rut'))
                     <div class="invalid-feedback">
                         Contraseña invalida.
@@ -51,7 +51,7 @@
             </div>
             <div class="form-group col-md-6">
               <label for="telefono">Teléfono</label> <span class="text-red"> * </span>
-              <input type="text" class="form-control {{$errors->has('telefono')? 'is-invalid': '' }}" name="telefono">
+              <input type="text" class="form-control {{$errors->has('telefono')? 'is-invalid': '' }}" name="telefono" autocomplete="off">
               @if($errors->has('telefono'))
                     <div class="invalid-feedback">
                         Contraseña invalida.
@@ -62,7 +62,7 @@
         <div class="form-row">
             <div class="form-group col-md-6">
               <label for="email">Email</label> <span class="text-red"> * </span>
-              <input type="email" class="form-control {{$errors->has('email')? 'is-invalid': '' }}" name="email">
+              <input type="email" class="form-control {{$errors->has('email')? 'is-invalid': '' }}" name="email" autocomplete="off">
               @if($errors->has('email'))
                     <div class="invalid-feedback">
                         Contraseña invalida.

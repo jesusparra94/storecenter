@@ -96,7 +96,7 @@ class ClientesController extends Controller
         $search = array(".", "-", " ");
         $replace = "";
         $rut = $data['rut'];
-        $rutlimpio = str_replace($search, $replace, $rut);
+        $rutlimpio = strtolower(str_replace($search, $replace, $rut));
 
         $validarcliente = Clientes::where('vip_rut','=',$rutlimpio)
                         ->get();
