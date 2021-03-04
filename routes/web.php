@@ -30,6 +30,9 @@ Route::get('/comocomprar', [ComoComprarController::class, 'index'])->name('comoc
 Route::get('/despacho', [DespachoController::class, 'index'])->name('despacho');
 Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes');
 Route::get('/registrarse', [ClientesController::class, 'registrarse'])->name('registrarse');
+Route::post('/procesar/registro', [ClientesController::class, 'procesarregistro'])->name('procesarregistro');
+//Route::get('/registro-completado', [ClientesController::class, 'registrocompletado'])->name('registrocompletado');
+Route::get('/registro/{id}', [ClientesController::class, 'registrostatus'])->name('registrostatus');
 Route::post('/traercomunas', [ClientesController::class, 'traercomunas'])->name('traercomunas');
 Route::post('/login', [ClientesController::class, 'login'])->name('login');
 
