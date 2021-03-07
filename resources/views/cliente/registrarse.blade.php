@@ -10,48 +10,79 @@
                 <i class="fas fa-arrow-left" style="color:#234560; margin-top: 0px;float:left;" aria-hidden="true"></i>
             </a>
             <div>
-                <strong><label style="font-size:25px "> Detalles del producto </label></strong>
+            <strong><label style="font-size:25px ">Datos requeridos </label></strong>
                 <div class="divseparador"></div>
             </div>
         </div>
     </div>
 
-
-    <form>
+    <form action="{{url('/procesar/registro')}}" method="post" enctype="multipart/form-data">
+    {{csrf_field()}}
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="razon">Razón social o Nombre</label> <span class="text-red"> * </span>
-            <input type="text" class="form-control" name="razon">
+            <input type="text" class="form-control {{$errors->has('razon')? 'is-invalid': '' }}" name="razon">
+            @if($errors->has('razon'))
+                    <div class="invalid-feedback">
+                        Contraseña invalida.
+                    </div>
+              @endif
           </div>
           <div class="form-group col-md-6">
-            <label for="rut">Rut de la empresa</label> <span class="text-red"> * </span>
-            <input type="text" class="form-control" name="rut">
+            <label for="rut">Rut</label> <span class="text-red"> * </span>
+            <input type="text" class="form-control {{$errors->has('rut')? 'is-invalid': '' }}" name="rut" autocomplete="off">
+            <small class="ruttext text-danger">Sin puntos ni guión, ejemplo(23223223K)</small>
+            @if($errors->has('rut'))
+                    <div class="invalid-feedback">
+                        Contraseña invalida.
+                    </div>
+              @endif
           </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
               <label for="giro">Giro</label> <span class="text-red"> * </span>
-              <input type="text" class="form-control" name="giro">
+              <input type="text" class="form-control {{$errors->has('giro')? 'is-invalid': '' }}" name="giro">
+              @if($errors->has('giro'))
+                    <div class="invalid-feedback">
+                        Contraseña invalida.
+                    </div>
+              @endif
             </div>
             <div class="form-group col-md-6">
               <label for="telefono">Teléfono</label> <span class="text-red"> * </span>
-              <input type="text" class="form-control" name="telefono">
+              <input type="text" class="form-control {{$errors->has('telefono')? 'is-invalid': '' }}" name="telefono" autocomplete="off">
+              @if($errors->has('telefono'))
+                    <div class="invalid-feedback">
+                        Contraseña invalida.
+                    </div>
+              @endif
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
               <label for="email">Email</label> <span class="text-red"> * </span>
-              <input type="email" class="form-control" name="email">
+              <input type="email" class="form-control {{$errors->has('email')? 'is-invalid': '' }}" name="email" autocomplete="off">
+              @if($errors->has('email'))
+                    <div class="invalid-feedback">
+                        Contraseña invalida.
+                    </div>
+              @endif
             </div>
             <div class="form-group col-md-6">
               <label for="direccion">Dirección</label> <span class="text-red"> * </span>
-              <input type="text" class="form-control" name="direccion">
+              <input type="text" class="form-control {{$errors->has('direccion')? 'is-invalid': '' }}" name="direccion">
+              @if($errors->has('direccion'))
+                    <div class="invalid-feedback">
+                        Dirección invalida.
+                    </div>
+              @endif
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="region">Región</label> <span class="text-red"> * </span>
-                <select name="region" class="form-control region">
+                <select name="region" class="form-control region {{$errors->has('region')? 'is-invalid': '' }}">
                   <option selected value="0">Seleccionar Región</option>
                   <option  value="14">Región de Los Ríos</option>
                   <option  value="13">Región Metropolitana</option>
@@ -69,33 +100,71 @@
                   <option  value="1">Región de Tarapacá</option>
                   <option  value="15">Región de Arica y Parinacota</option>
                 </select>
+                @if($errors->has('region'))
+                    <div class="invalid-feedback">
+                        Región invalida.
+                    </div>
+              @endif
             </div>
             <div class="form-group col-md-6">
                 <label for="comuna">Comuna</label> <span class="text-red"> * </span>
-                <select name="comuna" class="form-control comuna">
+                <select name="comuna" class="form-control comuna {{$errors->has('comuna')? 'is-invalid': '' }}">
                   <option selected value="0">Seleccionar Comuna</option>
                 </select>
+                @if($errors->has('comuna'))
+                    <div class="invalid-feedback">
+                        Comuna invalida.
+                    </div>
+              @endif
             </div>
 
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
               <label for="ciudad">Ciudad</label> <span class="text-red"> * </span>
-              <input type="text" class="form-control" name="ciudad">
+              <input type="text" class="form-control {{$errors->has('ciudad')? 'is-invalid': '' }}" name="ciudad">
+              @if($errors->has('ciudad'))
+                    <div class="invalid-feedback">
+                        Contraseña invalida.
+                    </div>
+              @endif
             </div>
         </div>
 
         <div class="form-row">
             <div class="form-group col-md-6">
               <label for="password">Contraseña</label> <span class="text-red"> * </span>
-              <input type="password" class="form-control" name="password">
+              <input type="password" class="form-control {{$errors->has('password')? 'is-invalid': '' }}" name="password">
+              @if($errors->has('password'))
+                    <div class="invalid-feedback">
+                    Contraseña invalida (min. 8 carácteres)/ Deben coincidir.
+                    </div>
+              @endif
             </div>
             <div class="form-group col-md-6">
-              <label for="repetirpass">Repita Contraseña</label> <span class="text-red"> * </span>
-              <input type="password" class="form-control" name="repetirpass">
+              <label for="password_confirmation">Repita Contraseña</label> <span class="text-red"> * </span>
+              <input type="password" class="form-control {{$errors->has('password')? 'is-invalid': '' }}" name="password_confirmation">
+              @if($errors->has('password'))
+                    <div class="invalid-feedback">
+                        Contraseña invalida (min. 8 carácteres)/ Deben coincidir.
+                    </div>
+              @endif
             </div>
         </div>
-        <button type="submit" class="btn btn-crear">Registrar</button>
+
+        <div class="form-group">
+        <div class="col-md-12">
+            {!! NoCaptcha::display() !!}
+        </div>
+
+        @if ($errors->has('g-recaptcha-response'))
+            <span class="feedbak-error">
+                <strong>Recaptcha inválido.</strong>
+            </span>
+        @endif
+    </div>
+
+        <button type="submit" class="btn btn-crear">Registrarme</button>
     </form>
 
 </div>

@@ -12,8 +12,8 @@
         <a class="nav-link colorlink" href="{{url('/empresa')}}">EMPRESA</a>
         <a class="nav-link colorlink" href="{{url('/comocomprar')}}">CÓMO COMPRAR</a>
         <a class="nav-link colorlink" href="{{url('/despacho')}}">DESPACHO</a>
-        <a class="nav-link colorlink" href="{{url('/servicio-cliente')}}">CONTACTO</a>
-        <a class="nav-link colorlink" href="{{url('/servicio-cliente')}}">GUÍA DE AYUDA</a>
+        <a class="nav-link colorlink" href="{{url('/contacto')}}">CONTACTO</a>
+        <a class="nav-link colorlink" href="{{url('/')}}">GUÍA DE AYUDA</a>
         <a class="nav-link colorlink" href="{{url('/clientes')}}">CLIENTES</a>
         @if(Session::has('id'))
             <a class="nav-link colorlink" href="{{url('/cuenta')}}">MI CUENTA</a>
@@ -91,8 +91,8 @@
         <a class="nav-link colorlink dropdown-item" href="{{url('/empresa')}}">EMPRESA</a>
         <a class="nav-link colorlink dropdown-item" href="{{url('/comocomprar')}}">CÓMO COMPRAR</a>
         <a class="nav-link colorlink dropdown-item" href="{{url('/despacho')}}">DESPACHO</a>
-        <a class="nav-link colorlink dropdown-item" href="{{url('/servicio-cliente')}}">CONTACTO</a>
-        <a class="nav-link colorlink dropdown-item" href="{{url('/servicio-cliente')}}">GUÍA DE AYUDA</a>
+        <a class="nav-link colorlink dropdown-item" href="{{url('/contacto')}}">CONTACTO</a>
+        <a class="nav-link colorlink dropdown-item" href="{{url('/')}}">GUÍA DE AYUDA</a>
         <a class="nav-link colorlink dropdown-item" href="{{url('/clientes')}}">CLIENTES</a>
         @if(Session::has('id'))
             @php $cliente = Session::get('id'); @endphp

@@ -16,7 +16,7 @@
             $imagenes =explode(",",$destacado->PRO_IMAGENES);
           @endphp
 
-          <a href="" style="text-decoration: none; color:black">
+
 
             <div class="item">
 
@@ -34,11 +34,10 @@
                   </div>
 
             </div>
-          </a>
-            
+
           @endforeach
 
-                
+
 
                 {{-- <a href="">
 
@@ -61,7 +60,7 @@
 
                     </div>
                 </a> --}}
-                
+
 
         </div>
     </div>

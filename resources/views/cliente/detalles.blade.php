@@ -19,8 +19,33 @@
     <div class="row no-gutters">
         <div class="col-md-12">
           <div class="card-body">
-            <h3 class="">Total: {{number_format($item->PED_TOTAL,0, '', '.')}}</h3>
-            <h3 class="">Fecha/Hora: {{$item->PED_FECHA}}</h3>
+            <h6 class="">Total: $ {{number_format($item->PED_TOTAL,0, '', '.')}}</h6>
+            @php
+            $meses = [
+                        "01" => "Enero",
+                        "02" => "Febrero",
+                        "03" => "Marzo",
+                        "04" => "Abril",
+                        "05" => "Mayo",
+                        "06" => "Junio",
+                        "07" => "Julio",
+                        "08" => "Agosto",
+                        "09" => "Septiembre",
+                        "10" => "Octubre",
+                        "11" => "Noviembre",
+                        "12" => "Diciembre",
+            ];
+            $datatime = date_create($item->PED_FECHA);
+            $fecha = date_format($datatime, 'd/m/Y');
+            $dia = date_format($datatime, 'd');
+            $mes = date_format($datatime, 'm');
+            $year = date_format($datatime, 'Y');
+
+            $fechafinal = $dia." de ".$meses[$mes]." del ".$year;
+            $hora = date_format($datatime, 'g:i A');
+            @endphp
+            <h6 class="">Fecha: {{$fechafinal}}</h6>
+            <h6 class="">Hora: {{$hora}}</h6>
             <br>
           </div>
         </div>

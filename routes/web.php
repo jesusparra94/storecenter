@@ -30,6 +30,9 @@ Route::get('/comocomprar', [ComoComprarController::class, 'index'])->name('comoc
 Route::get('/despacho', [DespachoController::class, 'index'])->name('despacho');
 Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes');
 Route::get('/registrarse', [ClientesController::class, 'registrarse'])->name('registrarse');
+Route::post('/procesar/registro', [ClientesController::class, 'procesarregistro'])->name('procesarregistro');
+//Route::get('/registro-completado', [ClientesController::class, 'registrocompletado'])->name('registrocompletado');
+Route::get('/registro/{id}', [ClientesController::class, 'registrostatus'])->name('registrostatus');
 Route::post('/traercomunas', [ClientesController::class, 'traercomunas'])->name('traercomunas');
 Route::post('/login', [ClientesController::class, 'login'])->name('login');
 
@@ -44,7 +47,7 @@ Route::get('/novedades/{id}', [ProductoController::class, 'novedades'])->name('n
 Route::post('/buscar', [ProductoController::class, 'buscarproducto'])->name('buscar-producto');
 
 //contacto
-Route::get('/servicio-cliente', [ContactoController::class, 'index'])->name('formulario-contacto');
+Route::get('/contacto', [ContactoController::class, 'index'])->name('formulario-contacto');
 Route::post('/enviar/solicitud', [ContactoController::class, 'insert'])->name('enviar-solicitud');
 Route::get('/solicitud/enviada', [ContactoController::class, 'cotizacioncontacto'])->name('solicitud-enviada');
 //Route::get('car/add2/{id}', [CarController::class, 'add2'])->name('add-car2');

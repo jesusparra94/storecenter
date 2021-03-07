@@ -18,14 +18,14 @@
 
             <div class="item">
 
-                <div class="card mb-3 h-100" style="width: 100%;">
-                    <div class="row no-gutters ">
+                <div class="card" style="width: 100%;">
+                    <div class="row no-gutters " style="height:25vh;">
                       <div class="col-md-4">
                         <img src="https://www.storecenter.cl/cph_upl/{{$imagenes[1]}}" alt="...">
                       </div>
                       <div class="col-md-8" style="display: flex;justify-content: center;align-items: center;">
                         <div class="card-body">
-                          <h5 class="card-title" style="margin-top:">{{$novedad->NOT_TITULO}}</h5>
+                          <h5 class="card-title"  style="">{{$novedad->NOT_TITULO}}</h5>
                         </div>
                       </div>
                     </div>

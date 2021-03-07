@@ -18,6 +18,11 @@
     background-color: #234560;
     color:white;
 }
+.btn-crear:hover {
+    background-color: #FFF!important;
+    color:#234560!important;
+    border:1px solid #234560!important;
+}
 .btn-addcar{
     color: #FFF;
     border:solid #FFF;
@@ -58,4 +63,7 @@ input[name=cantidadp]::-webkit-outer-spin-button {
     background: #234560 !important;
     color: #FFFF;
 
+}
+table.dataTable.no-footer {
+    border-bottom: none!important;
 }

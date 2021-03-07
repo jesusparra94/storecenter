@@ -115,6 +115,11 @@ class CotizacionesController extends Controller
                                 ->first();
         $detalles = Producto::where([['PRO_ID', '=' , $idproducto]])
                                 ->get();
-        return view('cotizaciones.mensaje',compact('categorias','subcategorias','empresa','footer','detalles'))->with('Mensaje', 'Cotización generada exitosamente.');
+
+        $destacados = Productos::where([['PRO_DESTACADO', '=' , 1],['PRO_ESTADO', '=' , 1]])
+        ->orderBy('PRO_NOMBRE', 'asc')
+        ->get();
+
+        return view('cotizaciones.mensaje',compact('categorias','subcategorias','empresa','footer','detalles','destacados'))->with('Mensaje', 'Cotización generada exitosamente.');
     }
 }

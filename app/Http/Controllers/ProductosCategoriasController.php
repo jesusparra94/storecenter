@@ -8,6 +8,7 @@ use App\Models\Productos;
 use App\Models\Novedades;
 use App\Models\Slider;
 use App\Models\Contenidos;
+use App\Models\Visitas;
 
 class ProductosCategoriasController extends Controller
 {
@@ -40,6 +41,47 @@ class ProductosCategoriasController extends Controller
         $footer =  Contenidos:: where([['CON_CODIGO', '=' , 'pie']])
                             ->first();
 
+        /*Registro de IP Unica*/
+        /* Habilitar en modo producción
+        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+            $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+            $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        }
+        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote  = $_SERVER['REMOTE_ADDR'];
+
+        if(filter_var($client, FILTER_VALIDATE_IP)){
+            $ip = $client;
+        }
+        elseif(filter_var($forward, FILTER_VALIDATE_IP)){
+            $ip = $forward;
+        }else{
+            $ip = $remote;
+        }
+        $fecha = date("Ymd");
+        $url = $_SERVER['REQUEST_URI'];
+        $contadorvisitas = 0;
+
+        $visitasxip = Visitas::select('CON_VALOR')
+                      ->where('con_ip','=',$ip)
+                      ->where('con_fecha','=',$fecha)
+                      ->get();
+        $n = $visitasxip[0]->CON_VALOR;
+		if($n > 0){
+            $contadorvisitas = $n + 1;
+			$updatevisitas = Visitas::where('con_ip','=',$ip)
+                             ->update(['con_valor' => $contadorvisitas]);
+		}else{
+            $visita = Visitas::insert([
+                       'con_ip' => $ip,
+                       'con_fecha' => $fecha,
+                       'con_valor' => 1,
+                       'con_address' => $url,
+                      ]);
+		}
+        */
+        /*Registro de IP Unica*/
 
         return view('inicio.inicio',compact('categorias','subcategorias','destacados','novedades','sliders','footer'));
 

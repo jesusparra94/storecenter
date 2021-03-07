@@ -61,7 +61,7 @@ class ContactoController extends Controller
             'comentarios' => 'required|max:320|min:2'
         ]);
 
-
+        $this->validate($request,$campos);
 
 
         $data = request();
