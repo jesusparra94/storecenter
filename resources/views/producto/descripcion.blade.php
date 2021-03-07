@@ -35,7 +35,7 @@
         $totalcar = 0;
     @endphp
 @endif
-@php //print_r($car);  @endphp
+    <br><br>
     <div class="row ml-1 mt-4 mb-5">
         <div class="col-md-12">
             <a href="{{url('/listado/producto/'.$producto->CAT_ID)}}" class="navbar-brand" style="margin-bottom: 0px !important; margin-top: 0px !important; ">
@@ -124,7 +124,7 @@
 <div class="item">
 
 <div class="mb-3" style="width: 100%;">
-
+    <br><br>
     <div class="row ml-1 mt-4 mb-5">
         <div class="col-md-12">
             <a href="{{url('/')}}" class="navbar-brand" style="margin-bottom: 0px !important; margin-top: 0px !important; ">
@@ -161,7 +161,7 @@
 @php $imagenes =explode(",",$producto->PRO_IMAGENES); @endphp
   <div class="item">
     <div>
-
+        <br><br>
         <div class="row ml-1 mt-4 mb-5">
             <div class="col-md-12">
                 <a href="{{url('/producto/'.$producto->PRO_ID)}}" class="navbar-brand" style="margin-bottom: 0px !important; margin-top: 0px !important; ">

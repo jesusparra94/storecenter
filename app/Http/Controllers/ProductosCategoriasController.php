@@ -42,6 +42,7 @@ class ProductosCategoriasController extends Controller
                             ->first();
 
         /*Registro de IP Unica*/
+        /* Habilitar en modo producción
         if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
             $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
             $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
@@ -79,6 +80,7 @@ class ProductosCategoriasController extends Controller
                        'con_address' => $url,
                       ]);
 		}
+        */
         /*Registro de IP Unica*/
 
         return view('inicio.inicio',compact('categorias','subcategorias','destacados','novedades','sliders','footer'));
