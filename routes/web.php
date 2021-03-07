@@ -71,6 +71,6 @@ Route::post('car/clear', [CarController::class, 'limpiarcar'])->name('limpiar-ca
 Route::get('car/pdf', [CarController::class, 'generarpdf'])->name('pdf-carrito');
 //FinalizarCompra (Cotización)
 Route::get('/finalizar-compra', [CarController::class, 'insert'])->name('finalizar-compra');
-Route::get('/pedido/generado', [CarController::class, 'pedidogenerado'])->name('pedido-generado');
+Route::get('/pedido-generado', [CarController::class, 'pedidogenerado'])->name('pedido-generado');
 
 });
