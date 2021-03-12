@@ -174,8 +174,9 @@
 
                         @if($modo=='cliente')
                             <p style="font-size: 18px;color:#234560;"><b>Clave:</b> <span>{{$clave}}</span></p>
-                            <p style="font-size: 20px;">Puede acceder desde nuestra web https://www.storecenter.cl, opción Iniciar Sesión.</p>
+                            <p style="font-size: 20px;">En poco tiempo su cuenta será validada y luego podrá acceder desde nuestra web https://www.storecenter.cl, opción Iniciar Sesión..</p>
                         @else
+                            <p style="font-size: 20px;">Se requiere activar su cuenta para que pueda acceder.</p>
                             <p style="font-size: 20px;">Saludos.</p>
                         @endif
 

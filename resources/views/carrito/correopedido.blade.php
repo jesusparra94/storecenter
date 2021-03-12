@@ -222,7 +222,9 @@
 
                         <br>
 
-                        <p style="font-size: 20px;">Total Neto: <b>{{number_format($totalsiniva,0, '', '.')}}</b></p>
+                        <p style="font-size: 20px;">Neto: <b>{{number_format($totalsiniva,0, '', '.')}}</b></p>
+                        <p style="font-size: 20px;">IVA: <b>{{number_format(($totalsiniva*0.19),0, '', '.')}}</b></p>
+                        <p style="font-size: 20px;">Total: <b>{{number_format((($totalsiniva*0.19)+$totalsiniva),0, '', '.')}}</b></p>
 
                         <br>
 

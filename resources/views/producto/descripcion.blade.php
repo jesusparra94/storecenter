@@ -71,7 +71,7 @@
                 <div class="card-body" style="padding:5px;">
                     <div class="row no-gutters" style="display: flex;justify-content: center;align-items: center;">
                         <div class="col-md-7  pr-2" style="border-right:0.9px solid #fff;">
-                            <h5 class="">Precio Normal: ${{number_format($producto->PRO_PRECIO,0, '', '.')}}</h5>
+                            <h5 class="">Precio Neto: ${{number_format($producto->PRO_PRECIO,0, '', '.')}}</h5>
                             <p class="textcantidad">Tiene <b>{{$totalcar}}</b> unidades agregadas</p>
                         </div>
                         <div class="col-md-5 p-2">

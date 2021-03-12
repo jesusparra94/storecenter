@@ -59,7 +59,7 @@
                         <tr>
                             <th scope="row">{{$fecha}}</th>
                             <td>StoreCenter Chile</td>
-                            <td>${{number_format($pedido->PED_TOTAL,0, '', '.')}}</td>
+                            <td>${{number_format(($pedido->PED_TOTAL*0.19)+($pedido->PED_TOTAL),0, '', '.')}}</td>
                             <td><a href="/pedido/{{$pedido->PED_ID}}">Ver detalles</a></td>
                         </tr>
 

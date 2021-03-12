@@ -30,7 +30,7 @@
             text-align:center;
         }
         .preciototal{
-            text-align:center;
+            text-align:right;
         }
     </style>
     </head>
@@ -68,8 +68,10 @@
               </table>
               <br>
               <div class="preciototal">
-                <h2><u>Total: {{number_format($total,0, '', '.')}} </u><h6 style="color:red;">(No incluye IVA)</h6></h2>
-                <p>Todos los precios publicados en StoreCenter Chile Ltda, son netos.</p>
+                <h4>Neto: {{number_format($total,0, '', '.')}}</h4>
+                <h4>IVA: {{number_format(($total*0.19),0, '', '.')}}</h4>
+                <h4>Total: {{number_format((($total*0.19)+$total),0, '', '.')}}</h4>
+                <p style="text-align:center;">StoreCenter Chile Ltda.</p>
               </div>
 
     </body>
