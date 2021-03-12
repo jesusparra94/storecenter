@@ -19,7 +19,9 @@
     <div class="row no-gutters">
         <div class="col-md-12">
           <div class="card-body">
-            <h6 class="">Total: $ {{number_format($item->PED_TOTAL,0, '', '.')}}</h6>
+            <h6 class="">Neto: $ {{number_format($item->PED_TOTAL,0, '', '.')}}</h6>
+            <h6 class="">IVA: $ {{number_format(($item->PED_TOTAL*0.19),0, '', '.')}}</h6>
+            <h6 class="">Total: $ {{number_format(($item->PED_TOTAL*0.19)+($item->PED_TOTAL),0, '', '.')}}</h6>
             @php
             $meses = [
                         "01" => "Enero",
@@ -85,7 +87,7 @@
                             <td class="align-middle">{{$pro->PRO_CODIGO}}</td>
                             <td class="align-middle">{{$pro->PRO_MARCA}}</td>
                             <td class="align-middle">{{$proc->PP_CANTIDAD}}</td>
-                            <td class="align-middle">${{number_format($proc->PP_PRECIO,0, '', '.')}}</td>
+                            <td class="align-middle">${{number_format(($proc->PP_PRECIO*0.19)+($proc->PP_PRECIO),0, '', '.')}}</td>
                         </tr>
 
                     @endif

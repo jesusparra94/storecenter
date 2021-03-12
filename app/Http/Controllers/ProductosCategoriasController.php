@@ -42,7 +42,7 @@ class ProductosCategoriasController extends Controller
                             ->first();
 
         /*Registro de IP Unica*/
-        /* Habilitar en modo producción
+
         if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
             $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
             $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
@@ -67,7 +67,13 @@ class ProductosCategoriasController extends Controller
                       ->where('con_ip','=',$ip)
                       ->where('con_fecha','=',$fecha)
                       ->get();
-        $n = $visitasxip[0]->CON_VALOR;
+
+        if(count($visitasxip)>0){
+            $n = $visitasxip[0]->CON_VALOR;
+        }else{
+            $n = 0;
+        }
+
 		if($n > 0){
             $contadorvisitas = $n + 1;
 			$updatevisitas = Visitas::where('con_ip','=',$ip)
@@ -80,7 +86,7 @@ class ProductosCategoriasController extends Controller
                        'con_address' => $url,
                       ]);
 		}
-        */
+
         /*Registro de IP Unica*/
 
         return view('inicio.inicio',compact('categorias','subcategorias','destacados','novedades','sliders','footer'));

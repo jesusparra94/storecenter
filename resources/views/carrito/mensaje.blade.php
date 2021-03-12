@@ -19,7 +19,7 @@
                     </div>
                 </div>
             </div>
-        <div class="card mb-3" style="width: 100%;">
+        <div class="mb-3" style="width: 100%;">
           <div class="row no-gutters text-center">
             <div class="col-md-12">
               <h3>{{$Mensaje}}</h3>

@@ -166,7 +166,6 @@ class CarController extends Controller
                     ->get();
         //return $lastpedido;
 
-
         if($pedido){
             $carrito = $car;
             $idpedido = $lastpedido[0]->PED_ID;
@@ -180,7 +179,7 @@ class CarController extends Controller
             $telefono = $cliente[0]->vip_fono_contacto;
             $mail = Mail::to('jdparrau@gmail.com')->send(new CotizacionCarrito($carrito,$idpedido,$nombre,$rut,$giro,$email,$direccion,$comuna,$ciudad,$telefono,$totalsiniva,'cliente'));
             $mail = Mail::to('jdparrau@gmail.com')->send(new CotizacionCarrito($carrito,$idpedido,$nombre,$rut,$giro,$email,$direccion,$comuna,$ciudad,$telefono,$totalsiniva,'jefe'));
-            return redirect('/pedido/generado/');
+            return redirect('/pedido-generado/');
             //return view('cotizaciones.mensaje',compact('categorias','subcategorias','empresa','footer','detalles'))->with('Mensaje', 'Cotización generada exitosamente.');
 
         }

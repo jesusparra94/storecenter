@@ -113,7 +113,7 @@ class ClientesController extends Controller
                 'vip_comuna' => $data['comuna'],
                 'vip_ciudad' => $data['ciudad'],
                 'vip_password' => md5($data['password']),
-                'vip_estado' => 1
+                'vip_estado' => 0
 
             ]);
             if($cliente){
