@@ -20,7 +20,7 @@
                     <span style="color:#FFF; text-transform: uppercase;">{{$categoria->CAT_NOMBRE}}</span>
                 </a>
                 <div class="collapse" style="" id="categorias{{$categoria->CAT_ID}}" style="background: #395870; color:#FFF;">
-                    <div class=" py-2 p-2 collapse-inner rounded " style="background: #395870">
+                    <div class=" py-2 p-2 collapse-inner rounded " style="background: #45647c">
                         <ul class="nav">
                             @foreach($subcategorias as $key => $subcategoria)
                                 @foreach($subcategoria as $key => $sub)
