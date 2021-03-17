@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $("input[name=rut]").keyup(function(){
         var rut = $(this).val();
-        if(rut.match(/^[0-9]+[kK]+$/)){
+        if(rut.match(/^(\d{1,3}(\.?\d{3}){2})\-?([\dkK])$/)){
             $('small.ruttext').text("RUT Válido");
             $('.btn-registrar').prop( "disabled", false );
         }else{

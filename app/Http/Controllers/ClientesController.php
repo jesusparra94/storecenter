@@ -124,7 +124,7 @@ class ClientesController extends Controller
 
             ]);
             if($cliente){
-                    $nombre = $data['nombre'];
+                    $nombre = $data['razon'];
                     $rutlimpio = $rutlimpio;
                     $pass = $data['password'];
                     $modo = 'cliente';
