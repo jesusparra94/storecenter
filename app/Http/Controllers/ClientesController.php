@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\Request;
 use App\Models\Contenidos;
@@ -82,11 +84,15 @@ class ClientesController extends Controller
             'comuna'=> 'required',
             'ciudad'=> 'required|max:320|min:2',
             'password' => 'required|min:8|confirmed',
+            'actividadeconomica'=> 'required|mimes:pdf,jpeg,png,jpg',
             'g-recaptcha-response' => 'required|captcha',
         ]);
 
 
+        if($request->hasFile('actividadeconomica')){
+            $pdf = $request->file("actividadeconomica")->store('pdf', 'public');
 
+        }
 
 
         //$this->validate($request,$campos);
@@ -113,6 +119,7 @@ class ClientesController extends Controller
                 'vip_comuna' => $data['comuna'],
                 'vip_ciudad' => $data['ciudad'],
                 'vip_password' => md5($data['password']),
+                'pdf_actividadeconomica' => $pdf,
                 'vip_estado' => 0
 
             ]);

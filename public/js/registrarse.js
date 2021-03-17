@@ -2,9 +2,10 @@ $(document).ready(function(){
     $("input[name=rut]").keyup(function(){
         var rut = $(this).val();
         if(rut.match(/^[0-9]+[kK]+$/)){
-            $('small.ruttext').text("RUT Valido");
+            $('small.ruttext').text("RUT Válido");
+            $('.btn-registrar').prop( "disabled", false );
         }else{
-            $('small.ruttext').text("RUT Invalido");
+            $('small.ruttext').text("RUT Inválido");
         }
     });
 
@@ -12,13 +13,6 @@ $(document).ready(function(){
         $('small.ruttext').text("Sin puntos ni guión, ejemplo(23223223K)");
     });
 });
-
-function ValidarRUT(rut){
-    permitido = /^[0-9]+[kK]+$/;
-
-//sólo letras, pero esto no incluye los acentos, así que si introduces á no es correcto.
-letras = /^[a-zA-Z]+$/;
-}
 
 $(".region").change(function(){
 
