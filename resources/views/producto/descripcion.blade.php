@@ -49,29 +49,35 @@
     </div>
 
 
+    <div itemscope itemtype="https://schema.org/Product">
       <div class="row no-gutters">
         <div class="col-md-3">
-          <img src="https://www.storecenter.cl/cph_upl/{{$imagenes[1]}}" alt="..." width="100%">
+          <img src="https://www.storecenter.cl/cph_upl/{{$imagenes[1]}}" alt="..." width="100%" itemprop="image">
         </div>
         <div class="col-md-9">
           <div class="card-body">
-            <h3 class="">{{$producto->PRO_NOMBRE}}</h3>
+            <h3 class="" itemprop="name">{{$producto->PRO_NOMBRE}}</h3>
             <br>
             <h6>Código: {{$producto->PRO_CODIGO}}</h6>
             <h6>Marca: {{$producto->PRO_MARCA}}</h6>
             @php $descripcion = str_replace("<br>", "", $producto->PRO_DESCRIPCION); @endphp
-            <h5 class="card-title">{!! $producto->PRO_DESCRIPCION !!}</h5>
+            <span itemprop="description">
+                <h5 class="card-title">{!! $producto->PRO_DESCRIPCION !!}</h5>
+            </span>
           </div>
         </div>
       </div>
       @if(Session::has('id'))
+      <div itemprop="offers" itemscope itemtype="https://schema.org/Offer">
       <div class="row no-gutters">
         <div class="col-md-7 col-sm-7 text-center mx-auto">
             <div class="card m-3" style="background-color: #234560;color:#fff;">
                 <div class="card-body" style="padding:5px;">
                     <div class="row no-gutters" style="display: flex;justify-content: center;align-items: center;">
                         <div class="col-md-7  pr-2" style="border-right:0.9px solid #fff;">
-                            <h5 class="">Precio Neto: ${{number_format($producto->PRO_PRECIO,0, '', '.')}}</h5>
+                            <h5 class="">Precio Neto: <span itemprop="priceCurrency" content="CLP">$</span>
+                            <span itemprop="price" content="{{$producto->PRO_PRECIO}}">{{number_format($producto->PRO_PRECIO,0, '', '.')}}</span>
+                            </h5>
                             <p class="textcantidad">Tiene <b>{{$totalcar}}</b> unidades agregadas</p>
                         </div>
                         <div class="col-md-5 p-2">
@@ -88,6 +94,8 @@
                 </div>
             </div>
         </div>
+    </div>
+    </div>
         <div class="col-md-3 text-center" style="display:none;">
             <div class="m-3">
                     <button class="btn btn-addcar" data-id="{{$producto->PRO_ID}}">
@@ -137,20 +145,23 @@
         </div>
     </div>
 
-
+    <div itemscope itemtype="https://schema.org/Product">
       <div class="row no-gutters">
         <div class="col-md-3">
-          <img src="https://www.storecenter.cl/cph_upl/{{$imagenes[1]}}" alt="..." width="100%">
+          <img src="https://www.storecenter.cl/cph_upl/{{$imagenes[1]}}" alt="..." width="100%"  itemprop="image">
         </div>
         <div class="col-md-9">
           <div class="card-body">
             <h3 class="">{{$item->NOT_TITULO}}</h3>
             <br>
             @php $descripcion = str_replace("<br>", "", $item->NOT_EPIGRAFE); @endphp
-            <h5 class="card-title">{!! $item->NOT_DETALLE !!}</h5>
+            <span itemprop="description">
+                <h5 class="card-title">{!! $item->NOT_DETALLE !!}</h5>
+            </span>
           </div>
         </div>
       </div>
+    </div>
 </div>
 
 </div>

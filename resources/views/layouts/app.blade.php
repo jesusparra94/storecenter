@@ -69,7 +69,21 @@ padding: 12px 10px;
 .custom-select, .custom-select-sm{
     width:30%!important;
 }
-
+.sidebar::-webkit-scrollbar{
+    /*width: 80px;     /* Tamaño del scroll en vertical */
+    /*height: 80px;    /* Tamaño del scroll en horizontal */
+    /*display: none;*/ /*Ocultar Scroll*/
+    background-color: #FFF!important;
+    width: 8px!important;
+    border-radius:15px!important;
+}
+.sidebar::-webkit-scrollbar-thumb {
+	background-color: #45647c!important;
+    border-radius:15px!important;
+}
+.nav-sidebar{
+    white-space: normal!important;
+}
 /*
 .dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
 

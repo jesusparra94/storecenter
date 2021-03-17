@@ -24,7 +24,7 @@
             <input type="text" class="form-control {{$errors->has('razon')? 'is-invalid': '' }}" name="razon">
             @if($errors->has('razon'))
                     <div class="invalid-feedback">
-                        Contraseña invalida.
+                        Contraseña inválida.
                     </div>
               @endif
           </div>
@@ -34,7 +34,7 @@
             <small class="ruttext text-danger">Sin puntos ni guión, ejemplo(23223223K)</small>
             @if($errors->has('rut'))
                     <div class="invalid-feedback">
-                        Contraseña invalida.
+                        Contraseña inválida.
                     </div>
               @endif
           </div>
@@ -45,41 +45,50 @@
               <input type="text" class="form-control {{$errors->has('giro')? 'is-invalid': '' }}" name="giro">
               @if($errors->has('giro'))
                     <div class="invalid-feedback">
-                        Contraseña invalida.
+                        Contraseña inválida.
                     </div>
               @endif
             </div>
+            <div class="form-group col-md-6">
+              <label for="actividadeconomica">Adjuntar, actividad económica vigente de la empresa o jurídica SII</label> <span class="text-red"> * </span>
+              <input type="file" class="form-control {{$errors->has('actividadeconomica')? 'is-invalid': '' }}" name="actividadeconomica">
+              @if($errors->has('actividadeconomica'))
+                    <div class="invalid-feedback">
+                        Documento inválido.
+                    </div>
+              @endif
+            </div>
+        </div>
+        <div class="form-row">
             <div class="form-group col-md-6">
               <label for="telefono">Teléfono</label> <span class="text-red"> * </span>
               <input type="text" class="form-control {{$errors->has('telefono')? 'is-invalid': '' }}" name="telefono" autocomplete="off">
               @if($errors->has('telefono'))
                     <div class="invalid-feedback">
-                        Contraseña invalida.
+                        Contraseña inválida.
                     </div>
               @endif
             </div>
-        </div>
-        <div class="form-row">
             <div class="form-group col-md-6">
               <label for="email">Email</label> <span class="text-red"> * </span>
               <input type="email" class="form-control {{$errors->has('email')? 'is-invalid': '' }}" name="email" autocomplete="off">
               @if($errors->has('email'))
                     <div class="invalid-feedback">
-                        Contraseña invalida.
-                    </div>
-              @endif
-            </div>
-            <div class="form-group col-md-6">
-              <label for="direccion">Dirección</label> <span class="text-red"> * </span>
-              <input type="text" class="form-control {{$errors->has('direccion')? 'is-invalid': '' }}" name="direccion">
-              @if($errors->has('direccion'))
-                    <div class="invalid-feedback">
-                        Dirección invalida.
+                        Contraseña inválida.
                     </div>
               @endif
             </div>
         </div>
         <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="direccion">Dirección</label> <span class="text-red"> * </span>
+              <input type="text" class="form-control {{$errors->has('direccion')? 'is-invalid': '' }}" name="direccion">
+              @if($errors->has('direccion'))
+                    <div class="invalid-feedback">
+                        Dirección inválida.
+                    </div>
+              @endif
+            </div>
             <div class="form-group col-md-6">
                 <label for="region">Región</label> <span class="text-red"> * </span>
                 <select name="region" class="form-control region {{$errors->has('region')? 'is-invalid': '' }}">
@@ -102,10 +111,14 @@
                 </select>
                 @if($errors->has('region'))
                     <div class="invalid-feedback">
-                        Región invalida.
+                        Región inválida.
                     </div>
               @endif
             </div>
+
+
+        </div>
+        <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="comuna">Comuna</label> <span class="text-red"> * </span>
                 <select name="comuna" class="form-control comuna {{$errors->has('comuna')? 'is-invalid': '' }}">
@@ -113,19 +126,16 @@
                 </select>
                 @if($errors->has('comuna'))
                     <div class="invalid-feedback">
-                        Comuna invalida.
+                        Comuna inválida.
                     </div>
               @endif
             </div>
-
-        </div>
-        <div class="form-row">
             <div class="form-group col-md-6">
               <label for="ciudad">Ciudad</label> <span class="text-red"> * </span>
               <input type="text" class="form-control {{$errors->has('ciudad')? 'is-invalid': '' }}" name="ciudad">
               @if($errors->has('ciudad'))
                     <div class="invalid-feedback">
-                        Contraseña invalida.
+                        Contraseña inválida.
                     </div>
               @endif
             </div>
@@ -137,7 +147,7 @@
               <input type="password" class="form-control {{$errors->has('password')? 'is-invalid': '' }}" name="password">
               @if($errors->has('password'))
                     <div class="invalid-feedback">
-                    Contraseña invalida (min. 8 carácteres)/ Deben coincidir.
+                    Contraseña inválida (min. 8 carácteres)/ Deben coincidir.
                     </div>
               @endif
             </div>
@@ -146,7 +156,7 @@
               <input type="password" class="form-control {{$errors->has('password')? 'is-invalid': '' }}" name="password_confirmation">
               @if($errors->has('password'))
                     <div class="invalid-feedback">
-                        Contraseña invalida (min. 8 carácteres)/ Deben coincidir.
+                        Contraseña inválida (min. 8 carácteres)/ Deben coincidir.
                     </div>
               @endif
             </div>
@@ -164,7 +174,7 @@
         @endif
     </div>
 
-        <button type="submit" class="btn btn-crear">Registrarme</button>
+        <button type="submit" class="btn btn-crear btn-registrar" disabled>Registrarme</button>
     </form>
 
 </div>
