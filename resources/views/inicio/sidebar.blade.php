@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary sidebar-closed elevation-4 d-flex d-xl-none">
     <a  href="{{url('/')}}" class="brand-link a-logo">
-      <img src="{{asset('img/logo.png')}}" alt="" style="height: 42px;  width: 100%; object-fit: contain;">
+      <img src="{{asset('img/logo.png')}}" alt="Storecenter" title="Storecenter" style="height: 42px;  width: 100%; object-fit: contain;">
     </a>
     <div id="menu" class="sidebar" style="width: 100%">
       <nav class="mt-2">
