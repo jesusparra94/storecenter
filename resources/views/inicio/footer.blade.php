@@ -17,7 +17,7 @@
 <div class="row row-cols-1 row-cols-xl-3">
     <div class="col mt-4 mb-4">
       <div class="card" style="border: none; background:none; box-shadow: none !important; display: block !important;" align="center" >
-        <img src="{{asset('img/logo.png')}}" class="card-img-top" alt="..." style="width: 150px">
+        <img src="{{asset('img/logo.png')}}" class="card-img-top" alt="Storecenter" title="Storecenter" style="width: 150px">
         <div class="card-body">
           <h5 class="card-title">{!! $array0 !!}</h5>
         </div>

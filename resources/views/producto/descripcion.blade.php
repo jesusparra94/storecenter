@@ -52,7 +52,7 @@
     <div itemscope itemtype="https://schema.org/Product">
       <div class="row no-gutters">
         <div class="col-md-3">
-          <img src="https://www.storecenter.cl/cph_upl/{{$imagenes[1]}}" alt="..." width="100%" itemprop="image">
+          <img src="https://www.storecenter.cl/cph_upl/{{$imagenes[1]}}" alt="{{$producto->PRO_NOMBRE}}" title="{{$producto->PRO_NOMBRE}}" width="100%" itemprop="image">
         </div>
         <div class="col-md-9">
           <div class="card-body">
@@ -148,7 +148,7 @@
     <div itemscope itemtype="https://schema.org/Product">
       <div class="row no-gutters">
         <div class="col-md-3">
-          <img src="https://www.storecenter.cl/cph_upl/{{$imagenes[1]}}" alt="..." width="100%"  itemprop="image">
+          <img src="https://www.storecenter.cl/cph_upl/{{$imagenes[1]}}" alt="{{$item->NOT_TITULO}}" title="{{$item->NOT_TITULO}}" width="100%"  itemprop="image">
         </div>
         <div class="col-md-9">
           <div class="card-body">
