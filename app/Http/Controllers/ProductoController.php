@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Http\Request;
 use App\Models\Producto;
@@ -10,6 +11,7 @@ use App\Models\Productos;
 use App\Models\Novedades;
 use App\Models\Slider;
 use App\Models\Contenidos;
+use App\Mail\RegistroUsuario;
 
 class ProductoController extends Controller
 {
@@ -26,7 +28,7 @@ class ProductoController extends Controller
         if(filter_var($client, FILTER_VALIDATE_IP)){ $ip = $client;}
         elseif(filter_var($forward, FILTER_VALIDATE_IP)){ $ip = $forward;}
         else{ $ip = $remote;}
-        $urlnotificacion = $_SERVER['SCRIPT_FILENAME'];
+        $urlnotificacion = $_SERVER['REQUEST_URI'];
         $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$urlnotificacion,$ip));
         /***/
 
@@ -75,7 +77,7 @@ class ProductoController extends Controller
         if(filter_var($client, FILTER_VALIDATE_IP)){ $ip = $client;}
         elseif(filter_var($forward, FILTER_VALIDATE_IP)){ $ip = $forward;}
         else{ $ip = $remote;}
-        $urlnotificacion = $_SERVER['SCRIPT_FILENAME'];
+        $urlnotificacion = $_SERVER['REQUEST_URI'];
         $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$urlnotificacion,$ip));
         /***/
 
@@ -121,7 +123,7 @@ class ProductoController extends Controller
         if(filter_var($client, FILTER_VALIDATE_IP)){ $ip = $client;}
         elseif(filter_var($forward, FILTER_VALIDATE_IP)){ $ip = $forward;}
         else{ $ip = $remote;}
-        $urlnotificacion = $_SERVER['SCRIPT_FILENAME'];
+        $urlnotificacion = $_SERVER['REQUEST_URI'];
         $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$urlnotificacion,$ip));
         /***/
 

@@ -73,7 +73,7 @@ class CarController extends Controller
         if(filter_var($client, FILTER_VALIDATE_IP)){ $ip = $client;}
         elseif(filter_var($forward, FILTER_VALIDATE_IP)){ $ip = $forward;}
         else{ $ip = $remote;}
-        $urlnotificacion = $_SERVER['SCRIPT_FILENAME'];
+        $urlnotificacion = $_SERVER['REQUEST_URI'];
         $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$urlnotificacion,$ip));
         /***/
 
@@ -195,8 +195,8 @@ class CarController extends Controller
             $comuna = $cliente[0]->vip_comuna;
             $ciudad = $cliente[0]->vip_ciudad;
             $telefono = $cliente[0]->vip_fono_contacto;
-            $mail = Mail::to('jdparrau@gmail.com')->send(new CotizacionCarrito($carrito,$idpedido,$nombre,$rut,$giro,$email,$direccion,$comuna,$ciudad,$telefono,$totalsiniva,'cliente'));
-            $mail = Mail::to('jdparrau@gmail.com')->send(new CotizacionCarrito($carrito,$idpedido,$nombre,$rut,$giro,$email,$direccion,$comuna,$ciudad,$telefono,$totalsiniva,'jefe'));
+            $mail = Mail::to($email)->send(new CotizacionCarrito($carrito,$idpedido,$nombre,$rut,$giro,$email,$direccion,$comuna,$ciudad,$telefono,$totalsiniva,'cliente'));
+            $mail = Mail::to('contacto@storecenter.cl')->send(new CotizacionCarrito($carrito,$idpedido,$nombre,$rut,$giro,$email,$direccion,$comuna,$ciudad,$telefono,$totalsiniva,'jefe'));
             return redirect('/pedido-generado/');
             //return view('cotizaciones.mensaje',compact('categorias','subcategorias','empresa','footer','detalles'))->with('Mensaje', 'Cotización generada exitosamente.');
 

@@ -24,7 +24,7 @@ class ComoComprarController extends Controller
         if(filter_var($client, FILTER_VALIDATE_IP)){ $ip = $client;}
         elseif(filter_var($forward, FILTER_VALIDATE_IP)){ $ip = $forward;}
         else{ $ip = $remote;}
-        $urlnotificacion = $_SERVER['SCRIPT_FILENAME'];
+        $urlnotificacion = $_SERVER['REQUEST_URI'];
         $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$urlnotificacion,$ip));
         /***/
 

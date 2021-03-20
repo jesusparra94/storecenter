@@ -64,7 +64,6 @@ class ProductosCategoriasController extends Controller
         $fecha = date("Ymd");
         $url = $_SERVER['REQUEST_URI'];
         $contadorvisitas = 0;
-        $urlnotificacion = $_SERVER['SCRIPT_FILENAME'];
         $visitasxip = Visitas::select('CON_VALOR')
                       ->where('con_ip','=',$ip)
                       ->where('con_fecha','=',$fecha)
@@ -88,7 +87,7 @@ class ProductosCategoriasController extends Controller
                        'con_valor' => 1,
                        'con_address' => $url,
                       ]);
-            $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$urlnotificacion,$ip));
+            $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$url,$ip));
 		}
 
         /*Registro de IP Unica*/

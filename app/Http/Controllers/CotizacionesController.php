@@ -13,7 +13,7 @@ use App\Models\Novedades;
 use App\Models\Slider;
 use App\Models\Contenidos;
 use App\Mail\CotizacionUnica;
-use App\Mail\RegistroUsuario;
+
 
 class CotizacionesController extends Controller
 {
@@ -87,7 +87,7 @@ class CotizacionesController extends Controller
             $telefono = $data['telefono'];
             $comentarios = $data['comentarios'];
             $mail = Mail::to($data['email'])->send(new CotizacionUnica($nombre,$producto,$codigo,$ciudad,$empresa,$email,$telefono,'cliente',$num[0]->id,$comentarios));
-            $mail = Mail::to($data['email'])->send(new CotizacionUnica($nombre,$producto,$codigo,$ciudad,$empresa,$email,$telefono,'jefe',$num[0]->id,$comentarios));
+            $mail = Mail::to('contacto@storecenter.cl')->send(new CotizacionUnica($nombre,$producto,$codigo,$ciudad,$empresa,$email,$telefono,'jefe',$num[0]->id,$comentarios));
             return redirect('/cotizacion/generada/'.$data['idproducto']);
             //return view('cotizaciones.mensaje',compact('categorias','subcategorias','empresa','footer','detalles'))->with('Mensaje', 'Cotización generada exitosamente.');
 

@@ -32,7 +32,7 @@ class ClientesController extends Controller
         if(filter_var($client, FILTER_VALIDATE_IP)){ $ip = $client;}
         elseif(filter_var($forward, FILTER_VALIDATE_IP)){ $ip = $forward;}
         else{ $ip = $remote;}
-        $urlnotificacion = $_SERVER['SCRIPT_FILENAME'];
+        $urlnotificacion = $_SERVER['REQUEST_URI'];
         $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$urlnotificacion,$ip));
         /***/
 
@@ -76,7 +76,7 @@ class ClientesController extends Controller
         if(filter_var($client, FILTER_VALIDATE_IP)){ $ip = $client;}
         elseif(filter_var($forward, FILTER_VALIDATE_IP)){ $ip = $forward;}
         else{ $ip = $remote;}
-        $urlnotificacion = $_SERVER['SCRIPT_FILENAME'];
+        $urlnotificacion = $_SERVER['REQUEST_URI'];
         $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$urlnotificacion,$ip));
         /***/
 
@@ -157,7 +157,7 @@ class ClientesController extends Controller
                     $pass = $data['password'];
                     $modo = 'cliente';
                     $mail = Mail::to($data['email'])->send(new RegistroUsuario($nombre,$rutlimpio,$pass,'cliente','',''));
-                    $mail = Mail::to('jdparrau@gmail.com')->send(new RegistroUsuario($nombre,$rutlimpio,$pass,'jefe','',''));
+                    $mail = Mail::to('contacto@storecenter.cl')->send(new RegistroUsuario($nombre,$rutlimpio,$pass,'jefe','',''));
                     return redirect('/registro/completo');
             }else{
                 return redirect('/registro/error');
@@ -245,7 +245,7 @@ class ClientesController extends Controller
         if(filter_var($client, FILTER_VALIDATE_IP)){ $ip = $client;}
         elseif(filter_var($forward, FILTER_VALIDATE_IP)){ $ip = $forward;}
         else{ $ip = $remote;}
-        $urlnotificacion = $_SERVER['SCRIPT_FILENAME'];
+        $urlnotificacion = $_SERVER['REQUEST_URI'];
         $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$urlnotificacion,$ip));
         /***/
 
@@ -347,7 +347,7 @@ class ClientesController extends Controller
         if(filter_var($client, FILTER_VALIDATE_IP)){ $ip = $client;}
         elseif(filter_var($forward, FILTER_VALIDATE_IP)){ $ip = $forward;}
         else{ $ip = $remote;}
-        $urlnotificacion = $_SERVER['SCRIPT_FILENAME'];
+        $urlnotificacion = $_SERVER['REQUEST_URI'];
         $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$urlnotificacion,$ip));
         /***/
 

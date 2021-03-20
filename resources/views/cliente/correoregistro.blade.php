@@ -140,7 +140,7 @@
 
 
 
-                        <a href=""><img src="https://www.storecenter.cl/images/logo.png" width="280" alt="Logo" title="Logo"></a>
+                        <a href=""><img src="https://www.storecenter.cl/img/logo.png" width="280" alt="Logo" title="Logo"></a>
 
 
 
