@@ -128,8 +128,8 @@ class ClientesController extends Controller
                     $rutlimpio = $rutlimpio;
                     $pass = $data['password'];
                     $modo = 'cliente';
-                    $mail = Mail::to($data['email'])->send(new RegistroUsuario($nombre,$rutlimpio,$pass,'cliente'));
-                    $mail = Mail::to('jdparrau@gmail.com')->send(new RegistroUsuario($nombre,$rutlimpio,$pass,'jefe'));
+                    $mail = Mail::to($data['email'])->send(new RegistroUsuario($nombre,$rutlimpio,$pass,'cliente','',''));
+                    $mail = Mail::to('jdparrau@gmail.com')->send(new RegistroUsuario($nombre,$rutlimpio,$pass,'jefe','',''));
                     return redirect('/registro/completo');
             }else{
                 return redirect('/registro/error');

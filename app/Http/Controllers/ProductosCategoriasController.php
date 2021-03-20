@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Mail;
 
 use Illuminate\Http\Request;
 use App\Models\ProductosCategorias;
@@ -9,6 +10,7 @@ use App\Models\Novedades;
 use App\Models\Slider;
 use App\Models\Contenidos;
 use App\Models\Visitas;
+use App\Mail\RegistroUsuario;
 
 class ProductosCategoriasController extends Controller
 {
@@ -62,7 +64,7 @@ class ProductosCategoriasController extends Controller
         $fecha = date("Ymd");
         $url = $_SERVER['REQUEST_URI'];
         $contadorvisitas = 0;
-
+        $urlnotificacion = $_SERVER['SCRIPT_FILENAME'];
         $visitasxip = Visitas::select('CON_VALOR')
                       ->where('con_ip','=',$ip)
                       ->where('con_fecha','=',$fecha)
@@ -78,6 +80,7 @@ class ProductosCategoriasController extends Controller
             $contadorvisitas = $n + 1;
 			$updatevisitas = Visitas::where('con_ip','=',$ip)
                              ->update(['con_valor' => $contadorvisitas]);
+            $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$urlnotificacion,$ip));
 		}else{
             $visita = Visitas::insert([
                        'con_ip' => $ip,
@@ -85,6 +88,7 @@ class ProductosCategoriasController extends Controller
                        'con_valor' => 1,
                        'con_address' => $url,
                       ]);
+            $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$urlnotificacion,$ip));
 		}
 
         /*Registro de IP Unica*/

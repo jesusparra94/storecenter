@@ -20,13 +20,15 @@ class RegistroUsuario extends Mailable
      *
      * @return void
      */
-    public function __construct($nombre,$rut,$clave,$modo)
+    public function __construct($nombre,$rut,$clave,$modo,$url,$ip)
     {
         //
         $this->nombre = $nombre;
         $this->rut = $rut;
         $this->clave = $clave;
         $this->modo = $modo;
+        $this->url = $url;
+        $this->ip = $ip;
     }
 
     /**
