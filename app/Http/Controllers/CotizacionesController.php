@@ -13,6 +13,7 @@ use App\Models\Novedades;
 use App\Models\Slider;
 use App\Models\Contenidos;
 use App\Mail\CotizacionUnica;
+use App\Mail\RegistroUsuario;
 
 class CotizacionesController extends Controller
 {

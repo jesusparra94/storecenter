@@ -14,6 +14,8 @@ class RegistroUsuario extends Mailable
     public $rut;
     public $clave;
     public $modo;
+    public $url;
+    public $ip;
 
     /**
      * Create a new message instance.
