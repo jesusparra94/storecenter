@@ -59,7 +59,7 @@
 
     {!! NoCaptcha::renderJs() !!}
 
-    <title>StoreCenter</title>
+    <title>StoreCenter Chile Ltda | Atendiendo las necesidades de la Industria</title>
 </head>
 
 <style>
