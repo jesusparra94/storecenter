@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+	<link rel="canonical" href="https://www.storecenter.cl" />
+	<meta name="description" content="Ventas via Internet en Chile de Articulos de oficina, suministros importados, Ferreteria (nacional e importados), Mobiliario de Oficina, Insumos de cafeteria (fabricacion nacional e internacional)."/>
+	<meta name="keywords" content="articulos de oficina, ferreteria, mobiliario de oficina, insumos de cafeteria, ventas por internet, ecommerce" />
+	<meta property="og:locale" content="es_CL" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="" />
+	<meta property="og:description" content="Ventas via Internet en Chile de Articulos de oficina, suministros importados, Ferreteria (nacional e importados), Mobiliario de Oficina, Insumos de cafeteria (fabricacion nacional e internacional)." />
+	<meta property="og:url" content="https://www.storecenter.cl" />
+	<meta property="og:site_name" content="https://www.storecenter.cl" />
+
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="{{ asset('css/styles.css') }}" rel="stylesheet">
@@ -19,12 +30,6 @@
 
     <link href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css" rel="stylesheet" />
-
-    <!--
-    <link href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/rowreorder/1.2.7/css/rowReorder.dataTables.min.css" rel="stylesheet" />
-    <link href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.dataTables.min.css" rel="stylesheet" />
--->
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
@@ -54,7 +59,7 @@
 
     {!! NoCaptcha::renderJs() !!}
 
-    <title>Store Center</title>
+    <title>StoreCenter</title>
 </head>
 
 <style>
