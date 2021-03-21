@@ -20,7 +20,7 @@
             @endphp
             <tr class='btn_tr' data-id='{{$pro->PRO_ID}}'>
                 <td scope="row">
-                    <img alt="{{$pro->PRO_NOMBRE}}" title="{{$pro->PRO_NOMBRE}}" src="https://www.storecenter.cl/cph_upl/{{$imagenes[1]}}" width="90">
+                    <img alt="{{$pro->PRO_NOMBRE}}" title="{{$pro->PRO_NOMBRE}}" src="https://img.storecenter.cl/{{$imagenes[1]}}" width="90">
                 </td>
                 <td class="align-middle">{{$pro->PRO_NOMBRE}}</td>
                 <td class="align-middle">{{$pro->PRO_CODIGO}}</td>

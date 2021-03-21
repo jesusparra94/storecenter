@@ -14,7 +14,7 @@
                 }
             @endphp
             <div class="carousel-item {{$clase}}" data-interval="2000">
-            <img src="https://www.storecenter.cl/cph_upl/{{$slider->BAN_UBICACION}}" class="d-block w-100 img-fluid" alt="{{$slider->BAN_NOMBRE}}" title="{{$slider->BAN_NOMBRE}}" style="height: 200px; object-fit: unset" >
+            <img src="https://img.storecenter.cl/{{$slider->BAN_UBICACION}}" class="d-block w-100 img-fluid" alt="{{$slider->BAN_NOMBRE}}" title="{{$slider->BAN_NOMBRE}}" style="height: 200px; object-fit: unset" >
             </div>
             @php $item = $item+1; @endphp
             @endforeach
