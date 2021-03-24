@@ -107,6 +107,9 @@ class ProductoController extends Controller
 
         $detalles = Producto::where([['PRO_ID', '=' , $id]])
                     ->get();
+
+        //return $detalles;
+
         return view('producto.descripcion',compact('categorias','subcategorias','destacados','empresa','footer','detalles'))->with('Modo', 'Descripcion');
     }
 
@@ -154,6 +157,54 @@ class ProductoController extends Controller
         $novedad = Novedades::where([['NOT_ID', '=' , $id]])
                     ->get();
         return view('producto.descripcion',compact('categorias','subcategorias','destacados','empresa','footer','novedad'))->with('Modo', 'Novedades');
+    }
+
+    public function destacados($id){
+
+        /*Notificación de visita*/
+        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+            $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+            $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        }
+        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote  = $_SERVER['REMOTE_ADDR'];
+        if(filter_var($client, FILTER_VALIDATE_IP)){ $ip = $client;}
+        elseif(filter_var($forward, FILTER_VALIDATE_IP)){ $ip = $forward;}
+        else{ $ip = $remote;}
+        $urlnotificacion = $_SERVER['REQUEST_URI'];
+        $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$urlnotificacion,$ip));
+        /***/
+
+        $categorias = ProductosCategorias::where([['CAT_PADRE', '=' , 0],['CAT_ESTADO', '=' , 1]])
+                                            ->orderBy('CAT_NOMBRE', 'asc')
+                                            ->get();
+
+        foreach ($categorias as $key => $value) {
+
+            $subcategorias[] =ProductosCategorias::where([['CAT_PADRE', '=' , $value["CAT_ID"]],['CAT_ESTADO', '=' , 1]])
+                                                                ->orderBy('CAT_NOMBRE', 'asc')
+                                                                ->get();
+        }
+
+
+        $destacado = Productos::where([['PRO_ID', '=' , $id]])
+                                ->get();
+
+        $novedades = Novedades::where([['NOT_ESTADO', '=' , 1]])
+                                ->orderBy('NOT_FECHA', 'desc')
+                                ->get();
+
+        $empresa =  Contenidos:: where([['CON_CODIGO', '=' , 'txt_empresa']])
+                            ->first();
+
+        $footer =  Contenidos:: where([['CON_CODIGO', '=' , 'pie']])
+        ->first();
+
+
+        //$novedad = Novedades::where([['NOT_ID', '=' , $id]])
+        //            ->get();
+        return view('producto.descripcion',compact('categorias','subcategorias','destacado','empresa','footer','novedades'))->with('Modo', 'Destacados');
     }
 
     public function listado($idCategoria){

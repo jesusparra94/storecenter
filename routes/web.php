@@ -46,6 +46,7 @@ Route::get('/cotizar/{id}', [ProductoController::class, 'cotizar'])->name('cotiz
 Route::get('/cotizacion/generada/{id}', [CotizacionesController::class, 'cotizacionid'])->name('cotizacion-generada');
 Route::post('/generar/cotizacion', [CotizacionesController::class, 'insert'])->name('generar-cotizacion');
 Route::get('/novedades/{id}', [ProductoController::class, 'novedades'])->name('novedades-producto');
+Route::get('/destacados/{id}', [ProductoController::class, 'destacados'])->name('destacados-producto');
 Route::post('/buscar', [ProductoController::class, 'buscarproducto'])->name('buscar-producto');
 
 //contacto

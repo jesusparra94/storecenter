@@ -122,6 +122,8 @@ class CarController extends Controller
     }
 
     public function insert(){
+        date_default_timezone_set("America/Santiago");
+        //date_default_timezone_set('UTC');
         $car = \Session::get('car');
         $id = \Session::get('id');
         $cliente = Clientes::where('vip_id','=',$id)
@@ -159,7 +161,7 @@ class CarController extends Controller
                     'PED_NOMBRE' => $cliente[0]->vip_nombre,
                     'PED_CORREO' => $cliente[0]->vip_mail,
                     'PED_FONO' => $cliente[0]->vip_fono_contacto,
-                    'PED_FECHA' => date("Y-m-d"),
+                    'PED_FECHA' => date("Y-m-d h:i:s"),
                     'PED_COMENTARIOS' => '',
                     'PED_DIRECCION' =>$cliente[0]->vip_direccion,
                     'PED_TOTAL' =>$totalsiniva,

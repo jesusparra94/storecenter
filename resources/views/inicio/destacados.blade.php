@@ -31,6 +31,12 @@
                         </div>
                       </div>
                     </div>
+                    <div class="row no-gutters ">
+                        <div class="col-md-12">
+                        <a href="{{url('/destacados/'.$destacado->PRO_ID)}}" style="float:right;padding:5px;"><h6 style="color:#234560;">Leer más</h6></a>
+                        </div>
+
+                    </div>
                   </div>
 
             </div>

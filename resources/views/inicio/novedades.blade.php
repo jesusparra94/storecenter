@@ -31,7 +31,7 @@
                     </div>
                     <div class="row no-gutters ">
                         <div class="col-md-12">
-                        <a href="{{url('/novedades/'.$novedad->NOT_ID)}}" style="float:right;padding:5px;"><small style="color:#234560;">Leer más</small></a>
+                        <a href="{{url('/novedades/'.$novedad->NOT_ID)}}" style="float:right;padding:5px;"><h6 style="color:#234560;">Leer más</h6></a>
                         </div>
 
                     </div>

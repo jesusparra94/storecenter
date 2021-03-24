@@ -50,11 +50,34 @@
 
 
     <div itemscope itemtype="https://schema.org/Product">
-      <div class="row no-gutters">
-        <div class="col-md-3">
-          <img src="https://img.storecenter.cl/{{$imagenes[1]}}" alt="{{$producto->PRO_NOMBRE}}" title="{{$producto->PRO_NOMBRE}}" width="100%" itemprop="image">
+      <div class="row no-gutters infoproducto">
+        <div class="col-md-4 visorImg">
+            <figure class="visor" style="height:400px">
+                @php $i = 0; @endphp
+                @foreach($imagenes as $img)
+                    @if($img!='' || $img!=null)
+                        <img id="lupa{{$i}}" class="img-thumbnail" src="https://img.storecenter.cl/{{$img}}" style="height:400px" alt="{{$producto->PRO_NOMBRE}}" title="{{$producto->PRO_NOMBRE}}" itemprop="image">
+                        @php $i++; @endphp
+                    @endif
+                @endforeach
+            </figure>
+            <div class="flexslider">
+                <ul class="slides">
+                    @php $t = 0; @endphp
+                    @foreach($imagenes as $img)
+                        @if($img!='' || $img!=null)
+                            <li>
+                                <img value="{{$t}}" class="img-thumbnail" src="https://img.storecenter.cl/{{$img}}" style="height: 75px; object-fit: contain;"alt="{{$producto->PRO_NOMBRE}}" title="{{$producto->PRO_NOMBRE}}" itemprop="image">
+                            </li>
+                            @php $t++; @endphp
+                        @endif
+                    @endforeach
+                </ul>
+            </div>
         </div>
-        <div class="col-md-9">
+
+
+        <div class="col-md-8">
           <div class="card-body">
             <h3 class="" itemprop="name">{{$producto->PRO_NOMBRE}}</h3>
             <br>
@@ -123,6 +146,7 @@
 
 </div>
 @endforeach
+@include('inicio.destacados')
 @elseif($Modo == "Novedades")
 @foreach($novedad as $item)
 
@@ -146,11 +170,35 @@
     </div>
 
     <div itemscope itemtype="https://schema.org/Product">
-      <div class="row no-gutters">
-        <div class="col-md-3">
-          <img src="https://img.storecenter.cl/{{$imagenes[1]}}" alt="{{$item->NOT_TITULO}}" title="{{$item->NOT_TITULO}}" width="100%"  itemprop="image">
+
+    <div class="row no-gutters infoproducto">
+
+        <div class="col-md-4 visorImg">
+            <figure class="visor" style="height:400px">
+                @php $i = 0; @endphp
+                @foreach($imagenes as $img)
+                    @if($img!='' || $img!=null)
+                        <img id="lupa{{$i}}" class="img-thumbnail" src="https://img.storecenter.cl/{{$img}}" style="height:400px" alt="{{$item->NOT_TITULO}}" title="{{$item->NOT_TITULO}}" width="100%"  itemprop="image">
+                        @php $i++; @endphp
+                    @endif
+                @endforeach
+            </figure>
+            <div class="flexslider">
+                <ul class="slides">
+                    @php $t = 0; @endphp
+                    @foreach($imagenes as $img)
+                        @if($img!='' || $img!=null)
+                            <li>
+                                <img value="{{$t}}" class="img-thumbnail" src="https://img.storecenter.cl/{{$img}}" style="height: 75px; object-fit: contain;" alt="{{$item->NOT_TITULO}}" title="{{$item->NOT_TITULO}}" width="100%"  itemprop="image">
+                            </li>
+                            @php $t++; @endphp
+                        @endif
+                    @endforeach
+                </ul>
+            </div>
         </div>
-        <div class="col-md-9">
+
+        <div class="col-md-8">
           <div class="card-body">
             <h3 class="">{{$item->NOT_TITULO}}</h3>
             <br>
@@ -160,12 +208,96 @@
             </span>
           </div>
         </div>
+
+      </div>
+    </div>
+
+</div>
+
+</div>
+@endforeach
+@include('inicio.destacados')
+@elseif($Modo == "Destacados")
+@foreach($destacado as $item)
+
+@php
+  $imagenes =explode(",",$item->PRO_IMAGENES);
+@endphp
+<div class="item">
+
+<div class="mb-3" style="width: 100%;">
+    <br><br>
+    <div class="row ml-1 mt-4 mb-5">
+        <div class="col-md-12">
+            <a href="{{url('/')}}" class="navbar-brand" style="margin-bottom: 0px !important; margin-top: 0px !important; ">
+                <i class="fas fa-arrow-left" style="color:#234560; margin-top: 0px;float:left;" aria-hidden="true"></i>
+            </a>
+            <div>
+                <strong><label style="font-size:25px "> Destacados </label></strong>
+                <div class="divseparador"></div>
+            </div>
+        </div>
+    </div>
+
+    <div itemscope itemtype="https://schema.org/Product">
+
+        <div class="row no-gutters infoproducto">
+
+        <div class="col-md-4 visorImg">
+            <figure class="visor" style="height:400px">
+                @php $i = 0; @endphp
+                @foreach($imagenes as $img)
+                    @if($img!='' || $img!=null)
+                        <img id="lupa{{$i}}" class="img-thumbnail" src="https://img.storecenter.cl/{{$img}}" style="height:400px" alt="{{$item->PRO_NOMBRE}}" title="{{$item->PRO_NOMBRE}}"  itemprop="image">
+                        @php $i++; @endphp
+                    @endif
+                @endforeach
+            </figure>
+            <div class="flexslider">
+                <ul class="slides">
+                    @php $t = 0; @endphp
+                    @foreach($imagenes as $img)
+                        @if($img!='' || $img!=null)
+                            <li>
+                                <img value="{{$t}}" class="img-thumbnail" src="https://img.storecenter.cl/{{$img}}" style="height: 75px; object-fit: contain;" alt="{{$item->PRO_NOMBRE}}" title="{{$item->PRO_NOMBRE}}"  itemprop="image">
+                            </li>
+                            @php $t++; @endphp
+                        @endif
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-8">
+          <div class="card-body">
+            <h3 class="">{{$item->PRO_NOMBRE}}</h3>
+            <br>
+            @php $descripcion = str_replace("<br>", "", $item->PRO_EPIGRAFE); @endphp
+            <span itemprop="description">
+                <h5 class="card-title">{!! $item->PRO_DESCRIPCION !!}</h5>
+            </span>
+          </div>
+        </div>
+
+      </div>
+      <div class="row no-gutters">
+        <div class="col-md-12  text-center">
+            <a class="btn btn-cotizar" href="{{url('/cotizar/'.$item->PRO_ID)}}" data-id="{{$item->PRO_ID}}">
+              Cotizar
+              <i class="fas fa-dollar-sign" style="font-size:20px;float:right;"></i>
+            </a>
+            <a class="btn btn-cotizar" href="{{url('/producto/'.$item->PRO_ID.'/pdf')}}" data-id="{{$item->PRO_ID}}">
+              PDF
+              <i class="far fa-file-pdf"  style="font-size:20px;float:right;"></i>
+            </a>
+        </div>
       </div>
     </div>
 </div>
 
 </div>
 @endforeach
+@include('inicio.novedades')
 @else
 @foreach($detalles as $producto)
 
@@ -204,8 +336,9 @@
 
   </div>
 @endforeach
-@endif
 @include('inicio.destacados')
+@endif
+
 
 </div>
 
@@ -219,7 +352,7 @@
 
 @section('script')
 
-
+<script src="{{ asset('FlexSlider/jquery.flexslider.js') }}"></script>
 <script src="{{ asset('js/producto.js') }}"></script>
 <script src="{{ asset('js/inicio.js') }}"></script>
 

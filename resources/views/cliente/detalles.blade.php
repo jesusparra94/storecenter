@@ -44,7 +44,7 @@
             $year = date_format($datatime, 'Y');
 
             $fechafinal = $dia." de ".$meses[$mes]." del ".$year;
-            $hora = date_format($datatime, 'g:i A');
+            $hora = date_format($datatime, 'h:i:s');
             @endphp
             <h6 class="">Fecha: {{$fechafinal}}</h6>
             <h6 class="">Hora: {{$hora}}</h6>
