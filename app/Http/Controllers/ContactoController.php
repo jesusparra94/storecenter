@@ -14,10 +14,26 @@ use App\Models\Novedades;
 use App\Models\Slider;
 use App\Models\Contenidos;
 use App\Mail\CotizacionUnica;
+use App\Mail\RegistroUsuario;
 
 class ContactoController extends Controller
 {
     public function index(){
+
+        /*Notificación de visita*/
+        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+            $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+            $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        }
+        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote  = $_SERVER['REMOTE_ADDR'];
+        if(filter_var($client, FILTER_VALIDATE_IP)){ $ip = $client;}
+        elseif(filter_var($forward, FILTER_VALIDATE_IP)){ $ip = $forward;}
+        else{ $ip = $remote;}
+        $urlnotificacion = $_SERVER['REQUEST_URI'];
+        $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$urlnotificacion,$ip));
+        /***/
 
         $data = request();
 
@@ -111,7 +127,7 @@ class ContactoController extends Controller
             $telefono = $data['telefono'];
             $comentarios = $data['comentarios'];
             $mail = Mail::to($data['email'])->send(new CotizacionUnica($nombre,$producto,$codigo,$ciudad,$empresa,$email,$telefono,'cliente',$num[0]->id,$comentarios));
-            $mail = Mail::to($data['email'])->send(new CotizacionUnica($nombre,$producto,$codigo,$ciudad,$empresa,$email,$telefono,'jefe',$num[0]->id,$comentarios));
+            $mail = Mail::to('contacto@storecenter.cl')->send(new CotizacionUnica($nombre,$producto,$codigo,$ciudad,$empresa,$email,$telefono,'jefe',$num[0]->id,$comentarios));
             return redirect('/solicitud/enviada/');
             //return view('cotizaciones.mensaje',compact('categorias','subcategorias','empresa','footer','detalles'))->with('Mensaje', 'Cotización generada exitosamente.');
 

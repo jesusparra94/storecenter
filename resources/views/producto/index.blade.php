@@ -18,9 +18,13 @@
             @php
             $imagenes =explode(",",$pro->PRO_IMAGENES);
             @endphp
-            <tr class='btn_tr' data-id='{{$pro->PRO_ID}}'>
-                <td scope="row">
-                    <img alt="{{$pro->PRO_NOMBRE}}" title="{{$pro->PRO_NOMBRE}}" src="https://www.storecenter.cl/cph_upl/{{$imagenes[1]}}" width="90">
+            <tr class='btn_tr_' onClick="btn_tr({{$pro->PRO_ID}})" data-id='{{$pro->PRO_ID}}'>
+            <td scope="row">
+                        @if(isset($imagenes[1]))
+                            <img alt="{{$pro->PRO_NOMBRE}}" title="{{$pro->PRO_NOMBRE}}" src="https://img.storecenter.cl/{{$imagenes[1]}}" width="90">
+                        @else
+                            <img alt="{{$pro->PRO_NOMBRE}}" title="{{$pro->PRO_NOMBRE}}" src="{{url('img/sinfoto.jpg')}}" width="90">
+                        @endif
                 </td>
                 <td class="align-middle">{{$pro->PRO_NOMBRE}}</td>
                 <td class="align-middle">{{$pro->PRO_CODIGO}}</td>

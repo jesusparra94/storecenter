@@ -53,7 +53,7 @@
                         $imagenes =explode(",",$producto->PRO_IMAGENES);
                     @endphp
                     <tr>
-                        <th scope="row"><img src="https://www.storecenter.cl/cph_upl/{{$imagenes[1]}}" width="90"></th>
+                        <th scope="row"><img src="https://img.storecenter.cl/{{$imagenes[1]}}" width="90"></th>
                         <td>{{$producto->PRO_NOMBRE}}</td>
                         <td>{!!$producto->PRO_DESCRIPCION!!}</td>
                         <td>{{number_format(($producto->PRO_PRECIO),0, '', '.')}}</td>

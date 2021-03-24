@@ -21,6 +21,21 @@ class ClientesController extends Controller
 {
     public function index(){
 
+        /*Notificación de visita*/
+        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+            $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+            $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        }
+        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote  = $_SERVER['REMOTE_ADDR'];
+        if(filter_var($client, FILTER_VALIDATE_IP)){ $ip = $client;}
+        elseif(filter_var($forward, FILTER_VALIDATE_IP)){ $ip = $forward;}
+        else{ $ip = $remote;}
+        $urlnotificacion = $_SERVER['REQUEST_URI'];
+        $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$urlnotificacion,$ip));
+        /***/
+
         $categorias = ProductosCategorias::where([['CAT_PADRE', '=' , 0],['CAT_ESTADO', '=' , 1]])
                                             ->orderBy('CAT_NOMBRE', 'asc')
                                             ->get();
@@ -50,7 +65,20 @@ class ClientesController extends Controller
 
     public function registrarse(){
 
-
+        /*Notificación de visita*/
+        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+            $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+            $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        }
+        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote  = $_SERVER['REMOTE_ADDR'];
+        if(filter_var($client, FILTER_VALIDATE_IP)){ $ip = $client;}
+        elseif(filter_var($forward, FILTER_VALIDATE_IP)){ $ip = $forward;}
+        else{ $ip = $remote;}
+        $urlnotificacion = $_SERVER['REQUEST_URI'];
+        $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$urlnotificacion,$ip));
+        /***/
 
         $categorias = ProductosCategorias::where([['CAT_PADRE', '=' , 0],['CAT_ESTADO', '=' , 1]])
                                             ->orderBy('CAT_NOMBRE', 'asc')
@@ -128,8 +156,8 @@ class ClientesController extends Controller
                     $rutlimpio = $rutlimpio;
                     $pass = $data['password'];
                     $modo = 'cliente';
-                    $mail = Mail::to($data['email'])->send(new RegistroUsuario($nombre,$rutlimpio,$pass,'cliente'));
-                    $mail = Mail::to('jdparrau@gmail.com')->send(new RegistroUsuario($nombre,$rutlimpio,$pass,'jefe'));
+                    $mail = Mail::to($data['email'])->send(new RegistroUsuario($nombre,$rutlimpio,$pass,'cliente','',''));
+                    $mail = Mail::to('contacto@storecenter.cl')->send(new RegistroUsuario($nombre,$rutlimpio,$pass,'jefe','',''));
                     return redirect('/registro/completo');
             }else{
                 return redirect('/registro/error');
@@ -205,6 +233,21 @@ class ClientesController extends Controller
     }
 
     public function misdatos(){
+
+        /*Notificación de visita*/
+        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+            $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+            $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        }
+        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote  = $_SERVER['REMOTE_ADDR'];
+        if(filter_var($client, FILTER_VALIDATE_IP)){ $ip = $client;}
+        elseif(filter_var($forward, FILTER_VALIDATE_IP)){ $ip = $forward;}
+        else{ $ip = $remote;}
+        $urlnotificacion = $_SERVER['REQUEST_URI'];
+        $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$urlnotificacion,$ip));
+        /***/
 
 
         $categorias = ProductosCategorias::where([['CAT_PADRE', '=' , 0],['CAT_ESTADO', '=' , 1]])
@@ -292,6 +335,21 @@ class ClientesController extends Controller
     }
 
     public function detalles($id){
+
+        /*Notificación de visita*/
+        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+            $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+            $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        }
+        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote  = $_SERVER['REMOTE_ADDR'];
+        if(filter_var($client, FILTER_VALIDATE_IP)){ $ip = $client;}
+        elseif(filter_var($forward, FILTER_VALIDATE_IP)){ $ip = $forward;}
+        else{ $ip = $remote;}
+        $urlnotificacion = $_SERVER['REQUEST_URI'];
+        $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$urlnotificacion,$ip));
+        /***/
 
         $categorias = ProductosCategorias::where([['CAT_PADRE', '=' , 0],['CAT_ESTADO', '=' , 1]])
                                             ->orderBy('CAT_NOMBRE', 'asc')

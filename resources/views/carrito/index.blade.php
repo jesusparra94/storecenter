@@ -69,7 +69,7 @@ if(Session::has('car')){
                         $imagenes =explode(",",$value['PRO_IMAGENES']);
                     @endphp
                     <tr>
-                        <th scope="row"><img alt="{{$value['PRO_NOMBRE']}}" title="{{$value['PRO_NOMBRE']}}" src="https://www.storecenter.cl/cph_upl/{{$imagenes[1]}}" width="90"></th>
+                        <th scope="row"><img alt="{{$value['PRO_NOMBRE']}}" title="{{$value['PRO_NOMBRE']}}" src="https://img.storecenter.cl/{{$imagenes[1]}}" width="90"></th>
                         <td>{{$value['PRO_NOMBRE']}}</td>
                         <td>{{$value['cantidadcompra']}}</td>
                         <td>{{number_format(($value['PRO_PRECIO']*$value['cantidadcompra']),0, '', '.')}}</td>

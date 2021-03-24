@@ -1,3 +1,30 @@
+$(".flexslider").flexslider({
+
+	animation: "slide",
+    controlNav: true,
+    animationLoop: false,
+    slideshow: false,
+    itemWidth: 100,
+    itemMargin: 5
+
+});
+
+$(".flexslider ul li img").click(function(){
+
+	var capturaIndice = $(this).attr("value");
+
+	$(".infoproducto figure.visor img").hide();
+
+	$("#lupa"+capturaIndice).show();
+});
+
+function btn_tr(id){
+    var dominio = window.location.host;
+    var protocol = window.location.protocol;
+    //var id = $(this).attr("data-id");
+    var url = '/producto/'+id;
+    window.location.replace(url);
+}
 $(document).ready(function() {
 
 

@@ -12,6 +12,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\CotizacionesController;
 use App\Http\Controllers\CarController;
 use App\Http\Controllers\ContactoController;
+use App\Http\Controllers\TerminosController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,6 +27,7 @@ use App\Http\Controllers\ContactoController;
 
 Route::get('/', [ProductosCategoriasController::class, 'index'])->name('inicio');
 Route::get('/empresa', [EmpresaController::class, 'index'])->name('empresa');
+Route::get('/terminos', [TerminosController::class, 'index'])->name('terminos');
 Route::get('/comocomprar', [ComoComprarController::class, 'index'])->name('comocomprar');
 Route::get('/despacho', [DespachoController::class, 'index'])->name('despacho');
 Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes');
@@ -44,6 +46,7 @@ Route::get('/cotizar/{id}', [ProductoController::class, 'cotizar'])->name('cotiz
 Route::get('/cotizacion/generada/{id}', [CotizacionesController::class, 'cotizacionid'])->name('cotizacion-generada');
 Route::post('/generar/cotizacion', [CotizacionesController::class, 'insert'])->name('generar-cotizacion');
 Route::get('/novedades/{id}', [ProductoController::class, 'novedades'])->name('novedades-producto');
+Route::get('/destacados/{id}', [ProductoController::class, 'destacados'])->name('destacados-producto');
 Route::post('/buscar', [ProductoController::class, 'buscarproducto'])->name('buscar-producto');
 
 //contacto

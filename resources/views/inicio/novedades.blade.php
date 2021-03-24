@@ -21,7 +21,7 @@
                 <div class="card" style="width: 100%;">
                     <div class="row no-gutters " style="height:25vh;">
                       <div class="col-md-4">
-                        <img src="https://www.storecenter.cl/cph_upl/{{$imagenes[1]}}" alt="{{$novedad->NOT_TITULO}}" title="{{$novedad->NOT_TITULO}}">
+                        <img src="https://img.storecenter.cl/{{$imagenes[1]}}" alt="{{$novedad->NOT_TITULO}}" title="{{$novedad->NOT_TITULO}}">
                       </div>
                       <div class="col-md-8" style="display: flex;justify-content: center;align-items: center;">
                         <div class="card-body">
@@ -31,7 +31,7 @@
                     </div>
                     <div class="row no-gutters ">
                         <div class="col-md-12">
-                        <a href="{{url('/novedades/'.$novedad->NOT_ID)}}" style="float:right;padding:5px;"><small style="color:#234560;">Leer más</small></a>
+                        <a href="{{url('/novedades/'.$novedad->NOT_ID)}}" style="float:right;padding:5px;"><h6 style="color:#234560;">Leer más</h6></a>
                         </div>
 
                     </div>

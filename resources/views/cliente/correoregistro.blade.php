@@ -140,7 +140,7 @@
 
 
 
-                        <a href=""><img src="https://www.storecenter.cl/images/logo.png" width="280" alt="Logo" title="Logo"></a>
+                        <a href=""><img src="https://www.storecenter.cl/img/logo.png" width="280" alt="Logo" title="Logo"></a>
 
 
 
@@ -165,17 +165,22 @@
                    <br>
                         @if($modo=='cliente')
                             <p style="font-size: 20px;">Estimado <b>{{$nombre}}</b>, su registro se ha completado.</p>
-                        @else
+                        @elseif($modo=='jefe')
                             <p style="font-size: 20px;">El Usuario <b>{{$nombre}}</b> se ha registrado en la web.</b></p>
                         @endif
 
+                        @if($modo=='cliente' || $modo=='jefe')
                         <p style="font-size: 18px;color:#234560;"><b>Fecha:</b> {{date("Y-m-d")}}</p>
                         <p style="font-size: 18px;color:#234560;"><b>Usuario:</b> <span>{{$rut}}</span></p>
+                        @else
+                        <p style="font-size: 18px;color:#234560;"><b>IP:</b> {{$ip}}</p>
+                        <p style="font-size: 18px;color:#234560;"><b>URL:</b> {{$url}}</p>
+                        @endif
 
                         @if($modo=='cliente')
                             <p style="font-size: 18px;color:#234560;"><b>Clave:</b> <span>{{$clave}}</span></p>
                             <p style="font-size: 20px;">En poco tiempo validaremos su cuenta y luego podrá acceder desde nuestra web https://www.storecenter.cl, opción Iniciar Sesión..</p>
-                        @else
+                        @elseif($modo=='jefe')
                             <p style="font-size: 20px;">Se requiere activar su cuenta para que pueda acceder.</p>
                             <p style="font-size: 20px;">Saludos.</p>
                         @endif

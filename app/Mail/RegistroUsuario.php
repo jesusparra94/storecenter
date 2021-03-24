@@ -14,19 +14,23 @@ class RegistroUsuario extends Mailable
     public $rut;
     public $clave;
     public $modo;
+    public $url;
+    public $ip;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($nombre,$rut,$clave,$modo)
+    public function __construct($nombre,$rut,$clave,$modo,$url,$ip)
     {
         //
         $this->nombre = $nombre;
         $this->rut = $rut;
         $this->clave = $clave;
         $this->modo = $modo;
+        $this->url = $url;
+        $this->ip = $ip;
     }
 
     /**

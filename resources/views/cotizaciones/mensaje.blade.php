@@ -27,7 +27,7 @@
           <div class="row no-gutters text-center">
             <div class="col-md-12">
               <h3>{{$producto->PRO_NOMBRE}}</h3>
-              <img src="https://www.storecenter.cl/cph_upl/{{$imagenes[1]}}" alt="..." width="20%">
+              <img src="https://img.storecenter.cl/{{$imagenes[1]}}" alt="{{$producto->PRO_NOMBRE}}" title="{{$producto->PRO_NOMBRE}}" width="20%">
             </div>
           </div>
           <div class="row no-gutters text-center">

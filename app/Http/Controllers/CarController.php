@@ -14,11 +14,14 @@ use App\Models\Contenidos;
 use App\Models\Clientes;
 use App\Models\Comunas;
 use App\Mail\CotizacionCarrito;
+use App\Mail\RegistroUsuario;
 
 class CarController extends Controller
 {
 
     public function add(Request $request){
+
+
 
         $data = request();
         $id = $data->id;
@@ -58,6 +61,21 @@ class CarController extends Controller
      }
 
     public function carrito(){
+
+        /*Notificación de visita*/
+        if (isset($_SERVER["HTTP_CF_CONNECTING_IP"])) {
+            $_SERVER['REMOTE_ADDR'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+            $_SERVER['HTTP_CLIENT_IP'] = $_SERVER["HTTP_CF_CONNECTING_IP"];
+        }
+        $client  = @$_SERVER['HTTP_CLIENT_IP'];
+        $forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+        $remote  = $_SERVER['REMOTE_ADDR'];
+        if(filter_var($client, FILTER_VALIDATE_IP)){ $ip = $client;}
+        elseif(filter_var($forward, FILTER_VALIDATE_IP)){ $ip = $forward;}
+        else{ $ip = $remote;}
+        $urlnotificacion = $_SERVER['REQUEST_URI'];
+        $mail = Mail::to('visitas@storecenter.cl')->send(new RegistroUsuario('','','','envioip',$urlnotificacion,$ip));
+        /***/
 
         $categorias = ProductosCategorias::where([['CAT_PADRE', '=' , 0],['CAT_ESTADO', '=' , 1]])
                                             ->orderBy('CAT_NOMBRE', 'asc')
@@ -104,6 +122,8 @@ class CarController extends Controller
     }
 
     public function insert(){
+        date_default_timezone_set("America/Santiago");
+        //date_default_timezone_set('UTC');
         $car = \Session::get('car');
         $id = \Session::get('id');
         $cliente = Clientes::where('vip_id','=',$id)
@@ -141,7 +161,7 @@ class CarController extends Controller
                     'PED_NOMBRE' => $cliente[0]->vip_nombre,
                     'PED_CORREO' => $cliente[0]->vip_mail,
                     'PED_FONO' => $cliente[0]->vip_fono_contacto,
-                    'PED_FECHA' => date("Y-m-d"),
+                    'PED_FECHA' => date("Y-m-d h:i:s"),
                     'PED_COMENTARIOS' => '',
                     'PED_DIRECCION' =>$cliente[0]->vip_direccion,
                     'PED_TOTAL' =>$totalsiniva,
@@ -177,8 +197,8 @@ class CarController extends Controller
             $comuna = $cliente[0]->vip_comuna;
             $ciudad = $cliente[0]->vip_ciudad;
             $telefono = $cliente[0]->vip_fono_contacto;
-            $mail = Mail::to('jdparrau@gmail.com')->send(new CotizacionCarrito($carrito,$idpedido,$nombre,$rut,$giro,$email,$direccion,$comuna,$ciudad,$telefono,$totalsiniva,'cliente'));
-            $mail = Mail::to('jdparrau@gmail.com')->send(new CotizacionCarrito($carrito,$idpedido,$nombre,$rut,$giro,$email,$direccion,$comuna,$ciudad,$telefono,$totalsiniva,'jefe'));
+            $mail = Mail::to($email)->send(new CotizacionCarrito($carrito,$idpedido,$nombre,$rut,$giro,$email,$direccion,$comuna,$ciudad,$telefono,$totalsiniva,'cliente'));
+            $mail = Mail::to('contacto@storecenter.cl')->send(new CotizacionCarrito($carrito,$idpedido,$nombre,$rut,$giro,$email,$direccion,$comuna,$ciudad,$telefono,$totalsiniva,'jefe'));
             return redirect('/pedido-generado/');
             //return view('cotizaciones.mensaje',compact('categorias','subcategorias','empresa','footer','detalles'))->with('Mensaje', 'Cotización generada exitosamente.');
 

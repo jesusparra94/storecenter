@@ -23,13 +23,19 @@
                 <div class="card mb-3" style="width: 100%;">
                     <div class="row no-gutters">
                       <div class="col-md-4">
-                        <img src="https://www.storecenter.cl/cph_upl/{{$imagenes[1]}}" alt="{{$destacado->PRO_NOMBRE}}" title="{{$destacado->PRO_NOMBRE}}">
+                        <img src="https://img.storecenter.cl/{{$imagenes[1]}}" alt="{{$destacado->PRO_NOMBRE}}" title="{{$destacado->PRO_NOMBRE}}">
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
                           <h5 class="card-title" style="margin-top: 25%;">{{$destacado->PRO_NOMBRE}}</h5>
                         </div>
                       </div>
+                    </div>
+                    <div class="row no-gutters ">
+                        <div class="col-md-12">
+                        <a href="{{url('/destacados/'.$destacado->PRO_ID)}}" style="float:right;padding:5px;"><h6 style="color:#234560;">Leer más</h6></a>
+                        </div>
+
                     </div>
                   </div>
 
