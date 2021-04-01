@@ -180,7 +180,7 @@
 
                    <br>
                         @if($modo=='cliente')
-                            <p style="font-size: 20px;">Estimado <b>{{$nombre}}</b>, hemos recibido su solicitud de pedido</p>
+                            <p style="font-size: 20px;">Estimado <b>{{$nombre}}</b>, se ha recibido conforme vuestra orden de compra</p>
                         @else
                             <p style="font-size: 20px;">Estimado, Ha recibido un nuevo pedido N° <b>{{$idpedido}}</b> de: <b>{{$nombre}}</b></p>
                         @endif
@@ -229,7 +229,9 @@
                         <br>
 
                         @if($modo=='cliente')
-                            <p style="font-size: 20px;">Nos pondremos en contacto contigo lo antes posible.</p>
+                            <p style="font-size: 20px;">Att: Ventas</p>
+                            <p style="font-size: 20px;">Fono: 56 22 4015592</p>
+                            <p style="font-size: 20px;">Av. Sergio Vieira de Mello 4524 - bodega 2110 - Macul - Santiago.</p>
                         @else
                             <p style="font-size: 20px;">Saludos.</p>
                         @endif

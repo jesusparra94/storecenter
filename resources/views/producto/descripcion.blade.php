@@ -132,10 +132,12 @@
       @endif
       <div class="row no-gutters">
         <div class="col-md-12  text-center">
+            @if(!Session::has('id'))
             <a class="btn btn-cotizar" href="{{url('/cotizar/'.$producto->PRO_ID)}}" data-id="{{$producto->PRO_ID}}">
               Cotizar
               <i class="fas fa-dollar-sign" style="font-size:20px;float:right;"></i>
             </a>
+            @endif
             <a class="btn btn-cotizar" href="{{url('/producto/'.$producto->PRO_ID.'/pdf')}}" data-id="{{$producto->PRO_ID}}">
               PDF
               <i class="far fa-file-pdf"  style="font-size:20px;float:right;"></i>
@@ -282,10 +284,12 @@
       </div>
       <div class="row no-gutters">
         <div class="col-md-12  text-center">
+            @if(!Session::has('id'))
             <a class="btn btn-cotizar" href="{{url('/cotizar/'.$item->PRO_ID)}}" data-id="{{$item->PRO_ID}}">
               Cotizar
               <i class="fas fa-dollar-sign" style="font-size:20px;float:right;"></i>
             </a>
+            @endif
             <a class="btn btn-cotizar" href="{{url('/producto/'.$item->PRO_ID.'/pdf')}}" data-id="{{$item->PRO_ID}}">
               PDF
               <i class="far fa-file-pdf"  style="font-size:20px;float:right;"></i>

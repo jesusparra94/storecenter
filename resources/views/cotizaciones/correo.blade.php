@@ -164,7 +164,7 @@
 
                    <br>
                         @if($modo=='cliente')
-                            <p style="font-size: 20px;">Estimado <b>{{$nombre}}</b>, hemos recibido su solicitud de cotización</p>
+                            <p style="font-size: 20px;">Estimado <b>{{$nombre}}</b>,  se ha recibido conforme vuestra solicitud de cotización</p>
                         @else
                             <p style="font-size: 20px;">Cotización N° <b>{{$num}}</b> generada por: <b>{{$nombre}}</b></p>
                         @endif
@@ -178,7 +178,10 @@
                         <p style="font-size: 18px;color:#234560;"><b>Email:</b> <span>{{$email}}</span></p>
                         <p style="font-size: 18px;color:#234560;"><b>Comentarios:</b> <span>{{$comentarios}}</span></p>
                         @if($modo=='cliente')
-                            <p style="font-size: 20px;">Nos pondremos en contacto contigo lo antes posible.</p>
+                            <p style="font-size: 20px;">Nos pondremos en contacto a la brevedad!</p>
+                            <p style="font-size: 20px;">Att: Ventas</p>
+                            <p style="font-size: 20px;">Fono: 56 22 4015592</p>
+                            <p style="font-size: 20px;">Av. Sergio Vieira de Mello 4524 - bodega 2110 - Macul - Santiago.</p>
                         @else
                             <p style="font-size: 20px;">Saludos.</p>
                         @endif
